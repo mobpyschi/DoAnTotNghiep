@@ -40,7 +40,7 @@
           <Key>
             <PropertyRef Name="Book_ID" />
           </Key>
-          <Property Name="Book_ID" Type="int" Nullable="false" />
+          <Property Name="Book_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="isbn" Type="varchar(max)" />
           <Property Name="bookName" Type="nvarchar" MaxLength="200" />
           <Property Name="description" Type="nvarchar(max)" />
@@ -69,12 +69,12 @@
             <PropertyRef Name="Customer_ID" />
           </Key>
           <Property Name="Customer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="customerName" Type="varchar" MaxLength="100" />
+          <Property Name="customerName" Type="nvarchar" MaxLength="100" />
           <Property Name="password" Type="varchar(max)" />
           <Property Name="avatar" Type="varchar" MaxLength="500" />
           <Property Name="customerEmail" Type="varchar" MaxLength="150" />
           <Property Name="customerPhone" Type="varchar" MaxLength="100" />
-          <Property Name="customerAddress" Type="varchar" MaxLength="100" />
+          <Property Name="customerAddress" Type="nvarchar" MaxLength="100" />
           <Property Name="sex" Type="bit" />
           <Property Name="dayOfBirth" Type="datetime" />
           <Property Name="role" Type="int" />
@@ -134,12 +134,12 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="userName" Type="varchar" MaxLength="100" />
+          <Property Name="userName" Type="nvarchar" MaxLength="100" />
           <Property Name="password" Type="varchar(max)" />
           <Property Name="avatar" Type="varchar" MaxLength="500" />
           <Property Name="email" Type="varchar" MaxLength="150" />
           <Property Name="phoneNumber" Type="varchar" MaxLength="10" />
-          <Property Name="address" Type="varchar" MaxLength="150" />
+          <Property Name="address" Type="nvarchar" MaxLength="150" />
           <Property Name="sex" Type="bit" />
           <Property Name="dayOfBirth" Type="datetime" />
           <Property Name="role" Type="int" />
@@ -156,7 +156,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Authors_Books_Book">
+        <Association Name="FK_AuthorsBooks_Book">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
           <End Role="Authors_Books" Type="Self.Authors_Books" Multiplicity="*" />
           <ReferentialConstraint>
@@ -168,7 +168,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Category">
+        <Association Name="FK_Book_category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
@@ -180,7 +180,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Language">
+        <Association Name="FK_Book_language">
           <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
@@ -192,7 +192,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Supplier">
+        <Association Name="FK_Book_supplier">
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
@@ -282,19 +282,19 @@
             <End Role="Author" EntitySet="Author" />
             <End Role="Authors_Books" EntitySet="Authors_Books" />
           </AssociationSet>
-          <AssociationSet Name="FK_Authors_Books_Book" Association="Self.FK_Authors_Books_Book">
+          <AssociationSet Name="FK_AuthorsBooks_Book" Association="Self.FK_AuthorsBooks_Book">
             <End Role="Book" EntitySet="Book" />
             <End Role="Authors_Books" EntitySet="Authors_Books" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_Category" Association="Self.FK_Book_Category">
+          <AssociationSet Name="FK_Book_category" Association="Self.FK_Book_category">
             <End Role="Category" EntitySet="Category" />
             <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_Language" Association="Self.FK_Book_Language">
+          <AssociationSet Name="FK_Book_language" Association="Self.FK_Book_language">
             <End Role="Language" EntitySet="Language" />
             <End Role="Book" EntitySet="Book" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_Supplier" Association="Self.FK_Book_Supplier">
+          <AssociationSet Name="FK_Book_supplier" Association="Self.FK_Book_supplier">
             <End Role="Supplier" EntitySet="Supplier" />
             <End Role="Book" EntitySet="Book" />
           </AssociationSet>
@@ -342,7 +342,7 @@
           <Property Name="Book_ID" Type="Int32" Nullable="false" />
           <Property Name="bookRole" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Author" Relationship="Self.FK_Authors_Books_Author" FromRole="Authors_Books" ToRole="Author" />
-          <NavigationProperty Name="Book" Relationship="Self.FK_Authors_Books_Book" FromRole="Authors_Books" ToRole="Book" />
+          <NavigationProperty Name="Book" Relationship="Self.FK_AuthorsBooks_Book" FromRole="Authors_Books" ToRole="Book" />
         </EntityType>
         <EntityType Name="Bill">
           <Key>
@@ -363,7 +363,7 @@
           <Key>
             <PropertyRef Name="Book_ID" />
           </Key>
-          <Property Name="Book_ID" Type="Int32" Nullable="false" />
+          <Property Name="Book_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="isbn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="bookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -377,10 +377,10 @@
           <Property Name="language_id" Type="Int32" />
           <Property Name="supplier_id" Type="Int32" />
           <Property Name="star" Type="Int32" />
-          <NavigationProperty Name="Authors_Books" Relationship="Self.FK_Authors_Books_Book" FromRole="Book" ToRole="Authors_Books" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Book_Category" FromRole="Book" ToRole="Category" />
-          <NavigationProperty Name="Language" Relationship="Self.FK_Book_Language" FromRole="Book" ToRole="Language" />
-          <NavigationProperty Name="Supplier" Relationship="Self.FK_Book_Supplier" FromRole="Book" ToRole="Supplier" />
+          <NavigationProperty Name="Authors_Books" Relationship="Self.FK_AuthorsBooks_Book" FromRole="Book" ToRole="Authors_Books" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Book_category" FromRole="Book" ToRole="Category" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_Book_language" FromRole="Book" ToRole="Language" />
+          <NavigationProperty Name="Supplier" Relationship="Self.FK_Book_supplier" FromRole="Book" ToRole="Supplier" />
           <NavigationProperty Name="DetailBills" Relationship="Self.FK_DetailBill_Book" FromRole="Book" ToRole="DetailBill" />
         </EntityType>
         <EntityType Name="Category">
@@ -391,7 +391,7 @@
           <Property Name="categoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="categoryNameForeign" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="theme_id" Type="Int32" />
-          <NavigationProperty Name="Books" Relationship="Self.FK_Book_Category" FromRole="Category" ToRole="Book" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_Book_category" FromRole="Category" ToRole="Book" />
           <NavigationProperty Name="Theme" Relationship="Self.FK_Category_Theme" FromRole="Category" ToRole="Theme" />
         </EntityType>
         <EntityType Name="Customer">
@@ -399,12 +399,12 @@
             <PropertyRef Name="Customer_ID" />
           </Key>
           <Property Name="Customer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="customerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="customerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="customerEmail" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="customerPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="customerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="customerAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="sex" Type="Boolean" />
           <Property Name="dayOfBirth" Type="DateTime" Precision="3" />
           <Property Name="role" Type="Int32" />
@@ -427,7 +427,7 @@
           </Key>
           <Property Name="Language_ID" Type="Int32" Nullable="false" />
           <Property Name="languageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Books" Relationship="Self.FK_Book_Language" FromRole="Language" ToRole="Book" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_Book_language" FromRole="Language" ToRole="Book" />
         </EntityType>
         <EntityType Name="Promotion">
           <Key>
@@ -455,7 +455,7 @@
           <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
           <Property Name="supplierName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Books" Relationship="Self.FK_Book_Supplier" FromRole="Supplier" ToRole="Book" />
+          <NavigationProperty Name="Books" Relationship="Self.FK_Book_supplier" FromRole="Supplier" ToRole="Book" />
         </EntityType>
         <EntityType Name="Theme">
           <Key>
@@ -472,12 +472,12 @@
             <PropertyRef Name="User_ID" />
           </Key>
           <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="userName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="avatar" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="phoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="sex" Type="Boolean" />
           <Property Name="dayOfBirth" Type="DateTime" Precision="3" />
           <Property Name="role" Type="Int32" />
@@ -495,7 +495,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Authors_Books_Book">
+        <Association Name="FK_AuthorsBooks_Book">
           <End Role="Book" Type="Self.Book" Multiplicity="1" />
           <End Role="Authors_Books" Type="Self.Authors_Books" Multiplicity="*" />
           <ReferentialConstraint>
@@ -519,7 +519,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Category">
+        <Association Name="FK_Book_category">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,7 +531,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Language">
+        <Association Name="FK_Book_language">
           <End Role="Language" Type="Self.Language" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
@@ -543,7 +543,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Book_Supplier">
+        <Association Name="FK_Book_supplier">
           <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
           <End Role="Book" Type="Self.Book" Multiplicity="*" />
           <ReferentialConstraint>
@@ -603,7 +603,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BookshopEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DataContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Authors" EntityType="Self.Author" />
           <EntitySet Name="Authors_Books" EntityType="Self.Authors_Books" />
           <EntitySet Name="Bills" EntityType="Self.Bill" />
@@ -621,7 +621,7 @@
             <End Role="Author" EntitySet="Authors" />
             <End Role="Authors_Books" EntitySet="Authors_Books" />
           </AssociationSet>
-          <AssociationSet Name="FK_Authors_Books_Book" Association="Self.FK_Authors_Books_Book">
+          <AssociationSet Name="FK_AuthorsBooks_Book" Association="Self.FK_AuthorsBooks_Book">
             <End Role="Book" EntitySet="Books" />
             <End Role="Authors_Books" EntitySet="Authors_Books" />
           </AssociationSet>
@@ -629,15 +629,15 @@
             <End Role="Bill" EntitySet="Bills" />
             <End Role="DetailBill" EntitySet="DetailBills" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_Category" Association="Self.FK_Book_Category">
+          <AssociationSet Name="FK_Book_category" Association="Self.FK_Book_category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Book" EntitySet="Books" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_Language" Association="Self.FK_Book_Language">
+          <AssociationSet Name="FK_Book_language" Association="Self.FK_Book_language">
             <End Role="Language" EntitySet="Languages" />
             <End Role="Book" EntitySet="Books" />
           </AssociationSet>
-          <AssociationSet Name="FK_Book_Supplier" Association="Self.FK_Book_Supplier">
+          <AssociationSet Name="FK_Book_supplier" Association="Self.FK_Book_supplier">
             <End Role="Supplier" EntitySet="Suppliers" />
             <End Role="Book" EntitySet="Books" />
           </AssociationSet>
@@ -663,7 +663,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BookshopModelStoreContainer" CdmEntityContainer="BookshopEntities">
+        <EntityContainerMapping StorageEntityContainer="BookshopModelStoreContainer" CdmEntityContainer="DataContext">
           <EntitySetMapping Name="Authors">
             <EntityTypeMapping TypeName="BookshopModel.Author">
               <MappingFragment StoreEntitySet="Author">

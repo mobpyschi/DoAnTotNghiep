@@ -63,7 +63,7 @@ namespace Project_BookStoreCT.Controllers
             if (Request.Cookies[".ad"] != null)
             {
                 //Kiểm tra cookie lấy id của user để lấy thông tin user
-                BookshopEntities db = new BookshopEntities();
+                DataContext db = new DataContext();
                 HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
                 var getUserIDFromCookie = int.Parse(ticket.Name);
@@ -90,7 +90,7 @@ namespace Project_BookStoreCT.Controllers
             else
             {
                 //Kiểm tra cookie lấy id của user để lấy thông tin user
-                BookshopEntities db = new BookshopEntities();
+                DataContext db = new DataContext();
                 HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
                 var getUserIDFromCookie = int.Parse(ticket.Name);
@@ -101,7 +101,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult UsersIndex()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 var user = (from u in db.Users join r in db.Roles on u.role equals r.Role_ID select new
                            {
@@ -127,7 +127,7 @@ namespace Project_BookStoreCT.Controllers
 
         public ActionResult CustomersIndex()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 var cus = (from c in db.Customers
                             join r in db.Roles on c.role equals r.Role_ID
@@ -162,7 +162,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpGet]
         public ActionResult AddNewUsers()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetRoles = (from r in db.Roles select r).ToList();
             }  
@@ -171,7 +171,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult AddNewUsers(UsersPost user)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetRoles = (from r in db.Roles select r).ToList();
                 var checkEmailExist = (from u in db.Users where u.email == user.email select u).FirstOrDefault();
@@ -225,7 +225,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpGet]
         public ActionResult UpdateUsers(int ? uid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetRoles = (from r in db.Roles select r).ToList();
                 TempData["userid"] = uid;
@@ -243,7 +243,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult UpdateUsers(UsersPost user)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetRoles = (from r in db.Roles select r).ToList();
                 User u = db.Users.Where(x => x.User_ID == user.userid).FirstOrDefault();
@@ -277,7 +277,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult DeleteUsers(int ? uid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 if (uid != null)
                 {
@@ -294,7 +294,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult BooksIndex()
         {
-            using(BookshopEntities db =new BookshopEntities())
+            using(DataContext db =new DataContext())
             {
                 List<BooksIndex_ViewModels> books = new List<BooksIndex_ViewModels>();
                 var listBooks = (from b in db.Books join c in db.Categories 
@@ -338,7 +338,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult ThemesIndex()
         {
-            using(BookshopEntities db =new BookshopEntities())
+            using(DataContext db =new DataContext())
             {
                 ViewBag.GetThemes = (from t in db.Themes select t).ToList();
                 ViewBag.check = (from t in db.Themes join c in db.Categories on t.Theme_ID equals c.theme_id select c).ToList();
@@ -347,7 +347,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult AddThemes(ThemesPost themes)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 Theme theme = new Theme();
                 theme.themeName = themes.tenTV;
@@ -360,7 +360,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult DeleteThemes(int ? tid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 if (tid != null)
                 {
@@ -378,7 +378,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpGet]
         public ActionResult UpdateThemes(int ? tid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 if (tid != null)
                 {
@@ -394,7 +394,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult UpdateThemes(ThemesPost themes)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 Theme theme = db.Themes.Where(x => x.Theme_ID == themes.theme_id).FirstOrDefault();
                 if (theme != null)
@@ -411,7 +411,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpGet]
         public ActionResult AddBooks()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetCategory = (from c in db.Categories select c).ToList();
                 ViewBag.GetSupplier = (from s in db.Suppliers select s).ToList();
@@ -422,7 +422,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult AddBooks(BooksPost book)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetCategory = (from c in db.Categories select c).ToList();
                 ViewBag.GetSupplier = (from s in db.Suppliers select s).ToList();
@@ -459,7 +459,7 @@ namespace Project_BookStoreCT.Controllers
         {
             if (bid != null)
             {
-                using (BookshopEntities db = new BookshopEntities())
+                using (DataContext db = new DataContext())
                 {
                     ViewBag.GetCategory = (from c in db.Categories select c).ToList();
                     ViewBag.GetSupplier = (from s in db.Suppliers select s).ToList();
@@ -476,7 +476,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult UpdateBooks(BooksPost book)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetCategory = (from c in db.Categories select c).ToList();
                 ViewBag.GetSupplier = (from s in db.Suppliers select s).ToList();
@@ -530,7 +530,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult DeleteBooks(int ? bid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 if (bid != null)
                 {
@@ -548,7 +548,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpGet]
         public ActionResult SaleOffBooks(int ? bid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 if (bid != null)
                 {
@@ -564,7 +564,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult SaleOffBooks(SaleOffPost sale)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 if (sale.book_id != null)
                 {
@@ -586,7 +586,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult CategoriesIndex()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 List<CategorysIndex_ViewModels> Categories = new List<CategorysIndex_ViewModels>();
                 var getcates = (from c in db.Categories join t in db.Themes 
@@ -611,7 +611,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpGet]
         public ActionResult AddCategorys()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetThemes = (from t in db.Themes select t).ToList();
                 return View();
@@ -620,7 +620,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult AddCategorys(CategorysPost category)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetThemes = (from t in db.Themes select t).ToList();
                 if (ModelState.IsValid)
@@ -642,7 +642,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpGet]
         public ActionResult UpdateCategorys(int ? cid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetThemes = (from t in db.Themes select t).ToList();
                 if (cid != null)
@@ -659,7 +659,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult UpdateCategorys(CategorysPost category)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 Category c = db.Categories.Where(x => x.Category_ID == category.category_id).FirstOrDefault();
                 if (c != null)
@@ -675,7 +675,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult DeleteCategorys(int ? cid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 if (cid != null)
                 {
@@ -692,7 +692,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult BillsIndex()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.Bills = (from b in db.Bills select b).ToList();
                 return View();
@@ -700,7 +700,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult DeleteBills(int ? bid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 var item = (from d in db.DetailBills select d).ToList();
                 foreach(var detail in item)
@@ -719,7 +719,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult DetailBills(int ? bid)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {              
                 if (bid != null)
                 {
@@ -753,7 +753,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult ViewRevenue(DateTime from_date, DateTime to_date)
         {
-            using(BookshopEntities db=new BookshopEntities())
+            using(DataContext db=new DataContext())
             {
                 ViewBag.GetBills = (from b in db.Bills where b.date_set >= from_date && b.date_set <= to_date && b.isPayment == true select b).ToList();
                 ViewBag.GetQuantityOrder = (from b in db.Bills where b.date_set >= from_date && b.date_set <= to_date && b.isPayment == true select b.Bill_ID).Count();

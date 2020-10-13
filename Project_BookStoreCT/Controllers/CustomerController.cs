@@ -50,7 +50,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpGet]
         public ActionResult RegisterCus()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetRoles = (from r in db.Roles select r).ToList();
             }
@@ -59,7 +59,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult RegisterCus(CusPost cus)
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetRoles = (from r in db.Roles select r).ToList();
                 var checkEmailExist = (from u in db.Customers where u.customerEmail == cus.email select u).FirstOrDefault();
@@ -103,7 +103,7 @@ namespace Project_BookStoreCT.Controllers
             if (Request.Cookies[".cus"] != null)
             {
                 //Kiểm tra cookie lấy id của user để lấy thông tin user
-                BookshopEntities db = new BookshopEntities();
+                DataContext db = new DataContext();
                 HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
                 var getUserIDFromCookie = int.Parse(ticket.Name);

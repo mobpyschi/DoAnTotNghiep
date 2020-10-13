@@ -9,6 +9,7 @@ using Project_BookStoreCT.Models.DataModels;
 using Project_BookStoreCT.Models.PostModels;
 using Project_BookStoreCT.Models.ServiceModels;
 using Project_BookStoreCT.Models.ViewModels;
+using DataContext = Project_BookStoreCT.Models.DataModels.DataContext;
 
 namespace Project_BookStoreCT.Controllers
 {
@@ -17,7 +18,7 @@ namespace Project_BookStoreCT.Controllers
         //Trang chủ
         public ActionResult Index()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
                 ViewBag.GetAllBooks = (from b in db.Books select b).ToList();
                 ViewBag.GetAllBooksSaleOff = (from b in db.Books where b.statusSaleOff == true select b).ToList();
@@ -28,7 +29,7 @@ namespace Project_BookStoreCT.Controllers
         //Lấy dữ liệu cho partial menu sách trong nước
         public PartialViewResult _PartialMenuSachTrongNuoc()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
 
                 List<GetThemeSachTrongNuoc> themes = new List<GetThemeSachTrongNuoc>();
@@ -45,7 +46,7 @@ namespace Project_BookStoreCT.Controllers
         //Lấy dữ liệu cho partial menu sách nước ngoài
         public PartialViewResult _PartialMenuSachNuocNgoai()
         {
-            using (BookshopEntities db = new BookshopEntities())
+            using (DataContext db = new DataContext())
             {
 
                 List<GetThemeSachNuocNgoai> themes = new List<GetThemeSachNuocNgoai>();
@@ -63,7 +64,7 @@ namespace Project_BookStoreCT.Controllers
         [HttpPost]
         public ActionResult Cart(int ? bid)
         {
-            using(BookshopEntities db =new BookshopEntities())
+            using(DataContext db =new DataContext())
             {
                 if (bid != null)
                 {
@@ -217,7 +218,7 @@ namespace Project_BookStoreCT.Controllers
                     }
                     // saving the paymentID in the key guid  
                     Session.Add(guid, createdPayment.id);
-                    using (BookshopEntities db = new BookshopEntities())
+                    using (DataContext db = new DataContext())
                     {
                         Bill bill = new Bill();
                         bill.customerName = f["txtKhachHang"];
@@ -359,7 +360,7 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult BillPayment(FormCollection f)
         {
-            using (BookshopEntities db = new BookshopEntities()) 
+            using (DataContext db = new DataContext()) 
             {
                 Bill bill = new Bill();
                 bill.customerName = f["txtKhachHang"];
@@ -390,7 +391,7 @@ namespace Project_BookStoreCT.Controllers
         {
             if (cid != null)
             {
-                using(BookshopEntities db=new BookshopEntities())
+                using(DataContext db=new DataContext())
                 {
                     ViewBag.GetAllCategorys = (from c in db.Categories select c).ToList();
                     ViewBag.GetBookFromID = (from b in db.Books
@@ -410,7 +411,7 @@ namespace Project_BookStoreCT.Controllers
         //{
         //    if (cid != null)
         //    {
-        //        using (BookshopEntities db = new BookshopEntities())
+        //        using (DataContext db = new DataContext())
         //        {
         //            ViewBag.GetAllCategorys = (from c in db.Categorys select c).ToList();
         //            ViewBag.GetBookFromID = (from b in db.Books
@@ -431,7 +432,7 @@ namespace Project_BookStoreCT.Controllers
         {
             if (bid != null)
             {
-                using(BookshopEntities db=new BookshopEntities())
+                using(DataContext db=new DataContext())
                 {
                     ViewBag.GetBook = (from b in db.Books where b.Book_ID == bid select b).ToList();
                     var get_id_Category = (from b in db.Books join c in db.Categories on b.category_id equals c.Category_ID where b.Book_ID == bid select c.Category_ID).FirstOrDefault();

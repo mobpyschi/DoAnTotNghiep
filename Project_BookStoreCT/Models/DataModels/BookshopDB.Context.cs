@@ -13,10 +13,10 @@ namespace Project_BookStoreCT.Models.DataModels
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class BookshopEntities : DbContext
+    public partial class DataContext : DbContext
     {
-        public BookshopEntities()
-            : base("name=BookshopEntities")
+        public DataContext()
+            : base("name=DataContext")
         {
         }
     

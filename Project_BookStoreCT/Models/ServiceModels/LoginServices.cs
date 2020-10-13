@@ -11,7 +11,7 @@ namespace Project_BookStoreCT.Models.ServiceModels
     {
         public bool CheckLogin(string email ,string password, bool checkRemember)
         {
-            using(BookshopEntities db =new BookshopEntities())
+            using(DataContext db =new DataContext())
             {
                 var checkLogin = db.Users.Where(x => x.email == email && x.password == password ).FirstOrDefault();
                 if (checkLogin != null)
