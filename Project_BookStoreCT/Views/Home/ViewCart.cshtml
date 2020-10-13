@@ -26,13 +26,13 @@
                         <table id="myTable">
                             <thead>
                                 <tr>
-                                    <th class="product-thumbnail">ID</th>
-                                    <th class="product-thumbnail">Hình ảnh</th>
-                                    <th class="product-name">TÊN SẢN PHẨM</th>
-                                    <th class="product-price">Đơn giá</th>
-                                    <th class="product-quantity">Số lượng</th>
-                                    <th class="product-subtotal">Tổng tiền</th>
-                                    <th class="product-remove">Xóa khỏi giỏ</th>
+                                    <th class="product-thumbnail"><b>ID</b></th>
+                                    <th class="product-thumbnail"><b>Hình ảnh</b></th>
+                                    <th class="product-name"><b>TÊN SẢN PHẨM</b></th>
+                                    <th class="product-price"><b>Đơn giá</b></th>
+                                    <th class="product-quantity"><b>Số lượng</b></th>
+                                    <th class="product-subtotal"><b>Tổng tiền</b></th>
+                                    <th class="product-remove"><b>Xóa khỏi giỏ</b></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,7 +43,7 @@
                                         <tr id="row_@cart.book_id">
                                             <td class="product-thumbnail">@cart.book_id</td>
                                             <td class="product-thumbnail"><a href="#"><img src="~/imgs/@cart.image" alt="man" /></a></td>
-                                            <td class="product-name"><a href="#">@cart.bookname</a></td>
+                                            <td class="product-name"><a href="#"><b>@cart.bookname</b></a></td>
                                             <td class="product-price"><span class="amount">@cart.price$</span></td>
                                             <td class="product-quantity"><input id="quantity" name="quantity" type="number" value="@cart.number"></td>
                                             <td class="product-subtotal">@cart.total$</td>
@@ -109,11 +109,11 @@
                                         <strong>
                                             @if (Session["ThanhTien"] != null)
                                             {
-                                                <span class="amount">@Session["ThanhTien"]$</span>
+                                                <span class="amount">@Session["ThanhTien"] VNĐ</span>
                                             }
                                             else
                                             {
-                                                <span class="amount">0$</span>
+                                                <span class="amount">0 VNĐ</span>
                                             }
                                         </strong>
                                     </td>

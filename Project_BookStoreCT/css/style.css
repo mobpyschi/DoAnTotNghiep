@@ -1264,7 +1264,8 @@ body {
     opacity: 1;
 }
 .product-img a img {
-    width: 100%;
+    width: 100% !important;
+    height: 30rem;
 }
 .quick-view {
     left: 0;
@@ -1328,7 +1329,7 @@ body {
     color: #f07c29;
     font-size: 20px;
     font-weight: 600;
-    font-family: 'Rufina', serif;
+    font-family: Calibri, serif;
     font-style: italic;
 }
 .product-price ul li span {
@@ -1395,18 +1396,20 @@ body {
     transform: scale(0.6);
     z-index: 2;
 }
-.product-link .product-button a {
-    border-radius: 0;
-    color: #333;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 30px;
-    text-transform: capitalize;
-    font-family: 'Rufina', serif;
-    font-weight: 400;
-    transition: .3s;
-}
+    .product-link .product-button a {
+        border-radius: 0;
+        color: #333;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 30px;
+        text-transform: capitalize;
+        font-family: 'Rufina', serif;
+        font-weight: 400;
+        transition: .3s;
+        margin-left: 4rem;
+        cursor:pointer;
+    }
 .product-link .product-button a i {
     padding-right: 8px;
 }
@@ -3703,13 +3706,13 @@ nav.menu .cr-dropdown ul {
 .left-menu ul li a:hover {
     color: #f07c29;
 }
-.left-menu ul li a:before {
-    content: "";
-    display: inline-block;
-    font-family: "FontAwesome";
-    font-size: 16px;
-    margin-right: 20px;
-}
+    .left-menu ul li a:before {
+        content: "";
+        display: inline-block;
+        font-family: "FontAwesome";
+        font-size: 16px;
+        margin-right: 20px;
+    }
 .left-menu ul li a span {
     color: #333;
     display: inline-block;
@@ -4304,7 +4307,7 @@ nav.menu .cr-dropdown ul {
     color: #f07c29;
     font-size: 25px;
     font-weight: 400;
-    font-family: 'Rufina', serif;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     font-weight: 400;
 }
 .product-info-price .price-final span.old-price {
@@ -4340,7 +4343,9 @@ nav.menu .cr-dropdown ul {
 }
 .product-add-form form .quality-button {
     float: left;
+    WIDTH: 100%;
     margin-right: 10px;
+    margin-bottom: 2rem;
 }
 .product-add-form form a {
     float: left;
@@ -5413,14 +5418,14 @@ nav.menu .cr-dropdown ul {
 .table-content table {
     text-align: center;
 }
-.table-content table td {
-    border-top: medium none;
-    font-size: 13px;
-    padding: 20px 10px;
-    vertical-align: middle;
-    font-family: 'Rufina', serif;
-    font-weight: 400;
-}
+    .table-content table td {
+        border-top: medium none;
+        font-size: 13px;
+        padding: 20px 10px;
+        vertical-align: middle;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        font-weight: 400;
+    }
 .table-content table td.product-thumbnail {
     width: 130px;
 }
@@ -5440,26 +5445,26 @@ nav.menu .cr-dropdown ul {
 .table-content table td.product-quantity {
     width: 180px;
 }
-.table-content table td input {
-    background: #e5e5e5 none repeat scroll 0 0;
-    border: medium none;
-    border-radius: 3px;
-    color: #6f6f6f;
-    font-size: 18px;
-    font-weight: normal;
-    height: 40px;
-    padding: 0 5px 0 10px;
-    width: 60px;
-    font-family: 'Rufina', serif;
-    font-weight: 400;
-}
-.table-content table td.product-subtotal {
-    font-size: 14px;
-    font-weight: bold;
-    width: 120px;
-    font-family: 'Rufina', serif;
-    font-weight: 400;
-}
+        .table-content table td input {
+            background: #e5e5e5 none repeat scroll 0 0;
+            border: medium none;
+            border-radius: 3px;
+            color: #6f6f6f;
+            font-size: 18px;
+            font-weight: normal;
+            height: 40px;
+            padding: 0 5px 0 10px;
+            width: 60px;
+            font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+            font-weight: 400;
+        }
+    .table-content table td.product-subtotal {
+        font-size: 14px;
+        font-weight: bold;
+        width: 120px;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        font-weight: 400;
+    }
 .table-content table .product-price .amount {
     font-size: 15px;
     font-weight: 700;

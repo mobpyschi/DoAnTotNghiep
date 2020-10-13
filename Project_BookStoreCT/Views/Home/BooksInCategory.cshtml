@@ -34,7 +34,9 @@
                         <ul>
                             @foreach (Category c in ViewBag.GetAllCategorys)
                             {
-                                <li><a href="~/Home/BooksInCategory?cid=@c.Category_ID">@c.categoryName</a></li>
+                            <li >
+                                <a href="~/Home/BooksInCategory?cid=@c.Category_ID">@c.categoryName</a>
+                            </li>
                             }
                         </ul>
                     </div>
@@ -114,7 +116,7 @@
                                         <div class="product-wrapper mb-40">
                                             <div class="product-img">
                                                 <a href="#">
-                                                    <img src="~/imgs/@b.image" alt="book" class="primary" />
+                                                    <img src="~/imgs/@b.image" alt="book" class="primary"  />
                                                 </a>                               
                                                 <div class="product-flag">
                                                     <ul>
@@ -134,8 +136,8 @@
                                                 <h4><a href="#">@b.bookName</a></h4>
                                                 <div class="product-price">
                                                     <ul>
-                                                        <li>@b.saleOffPrice$</li>
-                                                        <li class="old-price">@b.price$</li>
+                                                        <li>@b.saleOffPrice VNĐ</li>
+                                                        <li class="old-price">@b.price VNĐ</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -160,7 +162,7 @@
                                         <div class="product-wrapper mb-40">
                                             <div class="product-img">
                                                 <a href="#">
-                                                    <img src="~/imgs/@b.image" alt="book" class="primary" />
+                                                    <img src="~/imgs/@b.image" alt="book" class="primary"  />
                                                 </a>                      
                                                 <div class="product-flag">
                                                     <ul>             
@@ -179,7 +181,7 @@
                                                 <h4><a href="#">@b.bookName</a></h4>
                                                 <div class="product-price">
                                                     <ul>
-                                                        <li>@b.price$</li>
+                                                        <li>@b.price VNĐ</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -231,8 +233,8 @@
                                                     <h4><a href="#">@b.bookName</a></h4>
                                                     <div class="product-price">
                                                         <ul>
-                                                            <li>@b.saleOffPrice$</li>
-                                                            <li class="old-price">@b.price$</li>
+                                                            <li>@b.saleOffPrice VNĐ</li>
+                                                            <li class="old-price">@b.price VNĐ</li>
                                                         </ul>
                                                     </div>                    
                                                 </div>
@@ -278,7 +280,7 @@
                                                     <h4><a href="#">@b.bookName</a></h4>
                                                     <div class="product-price">
                                                         <ul>
-                                                            <li>@b.price$</li>
+                                                            <li>@b.price VNĐ</li>
                                                         </ul>
                                                     </div>
                                                 </div>
