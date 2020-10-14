@@ -63,9 +63,14 @@
                                             </div>
                                         </div>
                                         <div class="product-info-price">
+                                            <span>Giá:</span>
                                             <div class="price-final">
-                                                <span>@b.saleOffPrice$</span>
-                                                <span><b> @b.price VNĐ</b></span>
+
+                                                <span><strike><b> @b.price VNĐ</b></strike></span>
+                                            </div>
+                                            <span>Giá Sale:</span>
+                                            <div class="price-final">
+                                                <span style="width:100%">@b.saleOffPrice VNĐ</span>
                                             </div>
                                         </div>
                                         <div class="product-add-form">
@@ -74,8 +79,10 @@
                                                 <div class="quality-button">
                                                     <input class="qty" type="number" value="1">
                                                 </div>
-
-                                                <a href="#">Add to cart</a>
+                                                <div class="quality-button">
+                                                    <span style=" float: left; width: 100%">Thêm vào giỏ hàng:</span>
+                                                    <a href="#">Add to cart</a>
+                                                </div>
                                             </form>
                                         </div>
                                         <div class="product-social-links">
@@ -128,6 +135,7 @@
                                             </div>
                                         </div>
                                         <div class="product-info-price">
+                                            <span>Giá:</span>
                                             <div class="price-final">
                                                 <span><b> @b.price VNĐ</b></span>
                                             </div>
@@ -309,6 +317,7 @@
                                 {
                                     if (b.statusSaleOff == true)
                                     {
+                                        
                                         <!-- single-product-start -->
                                         <div class="product-wrapper" style="margin:1rem">
                                             <div class="product-img">
