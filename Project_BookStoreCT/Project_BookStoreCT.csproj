@@ -1863,6 +1863,8 @@
     <Content Include="Views\Customer\RegisterCus.cshtml" />
     <Content Include="Views\Shared\_PartialCustomerInformation.cshtml" />
     <Content Include="Views\Admin\CustomersIndex.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\UpdateCustomer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

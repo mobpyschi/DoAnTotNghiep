@@ -120,5 +120,91 @@ namespace Project_BookStoreCT.Controllers
             SessionCheckingCustomes.customerID = null;
             return Json(new { _mess = 1 });
         }
+
+        public ActionResult Index()
+        {
+            using(DataContext db = new DataContext())
+            {
+                var cus = (from c in db.Customers
+                           join r in db.Roles on c.role equals r.Role_ID where c.Customer_ID==SessionCheckingCustomes.customerID
+                           select new
+                           {
+                               c.Customer_ID,
+                               c.customerName,
+                               c.customerAddress,
+                               c.avatar,
+                               c.customerEmail,
+                               c.customerPhone,
+                               c.sex,
+                               r.roleName
+                           }).ToList();
+                List<CusIndex_ViewModels> customer = new List<CusIndex_ViewModels>();
+                foreach (var c in cus)
+                {
+                    CusIndex_ViewModels ci = new CusIndex_ViewModels();
+                    ci.cus_id = c.Customer_ID;
+                    ci.cusName = c.customerName;
+                    ci.cusAddress = c.customerAddress;
+                    ci.avatar = c.avatar;
+                    ci.cusEmail = c.customerEmail;
+                    ci.cusPhone = c.customerPhone;
+                    ci.sex = c.sex;
+                    ci.role = c.roleName;
+                    customer.Add(ci);
+                }
+                return View(customer);
+            }
+        }
+        [HttpGet]
+        public ActionResult UpdateCustomer(int ? cid)
+        {
+            using(DataContext db = new DataContext())
+            {
+                TempData["cid"] = cid;
+                if (cid != null)
+                {
+                    ViewBag.GetInfoCus = (from c in db.Customers where c.Customer_ID == cid select c).ToList();
+                    return View();
+                }
+                else
+                {
+                    return PartialView("_Partial404NotFound");
+                }
+            }    
+        }
+
+        [HttpPost]
+        public ActionResult UpdateCustomer(CusPost cus)
+        {
+            using(DataContext db = new DataContext())
+            {
+                Customer c = db.Customers.Where(x => x.Customer_ID== cus.userid).FirstOrDefault();
+                if (cus.email != null)
+                {
+                    
+                    c.customerName = cus.username;
+                    c.customerEmail = cus.email;
+                    c.customerPhone = cus.phone;
+                    c.role = 3;
+                    c.sex = Convert.ToBoolean(cus.sex);
+                    if (Convert.ToBoolean(cus.sex) == true)
+                    {
+                        c.avatar = "avt_men.jpg ";
+                    }
+                    else
+                    {
+                        c.avatar = "avt_girl.jpg";
+                    }
+                    c.customerAddress = cus.address;
+                    db.SaveChanges();
+                    return Json(new { mess__ = 1 });
+                }
+                else
+                {
+                   
+                    return Json(new { mess__ = 0 });
+                }
+            }
+        }
     }
 }

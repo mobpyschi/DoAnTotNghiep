@@ -1499,64 +1499,65 @@
         margin-left: 3rem !important;
     }
 
-  
     
-
     /* Large Mobile :480px. */
-    @media only screen and (min-width: 480px) and (max-width: 767px) {
-    .container {
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+        .container {
          max-width: 460px;
-    }
-
-            .section-title p {
-                font-size: 15px;
-            }
-
-            .link-follow ul li {
-                margin-right: 4px;
-            }
-
-            .review-right {
-                margin-top: 0;
-                padding-left: 110px;
-            }
-
-            .review-form .single-form form input {
-                width: 350px;
-            }
-
-            .review-form .single-form form textarea {
-                width: 350px;
-            }
-
-            .banner-area-5 .banner-text h3 {
-                font-size: 14px;
-            }
-
-            .banner-shadow-hover img {
-                width: 100%;
-            }
-
-            .single-banner .banner-img {
-                flex: 0 0 19px;
-                margin-right: 8px;
-            }
-
-            .single-banner .banner-text h4 {
-                font-size: 15px;
-            }
-
-            .banner-area.banner-res-large .col-xs-12 {
-                width: 50%;
-            }
-
-            .home-6 .slider-content-2 {
-                margin-right: 0;
-            }
-
-            .mini-cart-sub {
-                left: -5rem;
-                width: 240px;
-            }
         }
+
+        .section-title p {
+          font-size: 15px;
+        }
+
+        .link-follow ul li {
+          margin-right: 4px;
+        }
+
+        .review-right {
+           margin-top: 0;
+           padding-left: 110px;
+        }
+
+        .review-form .single-form form input {
+          width: 350px;
+        }
+
+        .review-form .single-form form textarea {
+           width: 350px;
+        }
+
+        .banner-area-5 .banner-text h3 {
+           font-size: 14px;
+        }
+
+        .banner-shadow-hover img {
+           width: 100%;
+        }
+
+        .single-banner .banner-img {
+           flex: 0 0 19px;
+           margin-right: 8px;
+        }
+
+        .single-banner .banner-text h4 {
+          font-size: 15px;
+        }
+
+        .banner-area.banner-res-large .col-xs-12 {
+           width: 50%;
+        }
+
+        .home-6 .slider-content-2 {
+           margin-right: 0;
+        }
+
+        .mini-cart-sub {
+           left: -5rem;
+           width: 240px;
+        }
+        .ml-ssm-1 {
+            margin-left: 9rem;
+        }
+}
 }
