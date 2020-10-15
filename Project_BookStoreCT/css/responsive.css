@@ -13,16 +13,29 @@
     .vt-l {
         margin-left: 37rem !important;
     }
-    .img-size{
-        border-radius:10rem;
-        max-width:3rem;
-        text-align:right;
+    .vt-center {
+        margin-left:53rem;
+    }
+    .vt-btn{
+        margin-left:4rem;
+    }
+    .row-lr {
+        margin-left: 4rem;
+        margin-right: -5rem;
+    }
+    .img-size {
+        border-radius: 10rem;
+        max-width: 3rem;
+        text-align: right;
     }
     .mini-cart-sub{
         left:-5rem;
         width:240px;
     }
+    .width-ct {
+        box-shadow: 0px 0px 9px 2px #0000001f;
     
+    }
   
 }
 @media (min-width: 1200px) and (max-width: 1299px){
@@ -39,6 +52,12 @@
     .vt-l {
         margin-left: 35rem !important;
     }
+    .vt-center {
+        margin-left:49rem ;
+    }
+    .vt-btn {
+        margin-left: 4rem;
+    }
     .img-size {
         border-radius: 10rem;
         max-width: 3rem;
@@ -48,7 +67,15 @@
         left: -5rem;
         width: 240px;
     }
+    .width-ct {
+        width: 90%;
+        box-shadow: 0px 0px 9px 2px #0000001f;
     
+    }
+    .row-lr {
+        margin-left: 3rem;
+        margin-right: -5rem;
+    }
 }
 
 @media (min-width: 1170px) and (max-width: 1199px) {
@@ -146,7 +173,13 @@
     .vt-l {
         margin-left: 28rem !important;
     }
-
+    .vt-center {
+        margin-left: 41rem;
+    }
+    .vt-btn {
+        margin-left: 0rem;
+        width:50%;
+    }
     .img-size {
         border-radius: 10rem;
         max-width: 3rem;
@@ -156,7 +189,16 @@
         left: -5rem;
         width: 240px;
     }
+    .width-ct {
+        width: 95%;
+        box-shadow: 0px 0px 9px 2px #0000001f;
+    
+    }
 
+    .row-lr {
+        margin-left: 2rem;
+        margin-right: -5rem;
+    }
     
 }
 
@@ -314,7 +356,13 @@
     .vt-l {
         margin-left: 28rem !important;
     }
-
+    .vt-center {
+        margin-left: 39rem;
+    }
+    .vt-btn {
+        margin-left: 0rem;
+        width:50%;
+    }
     .img-size {
         border-radius: 10rem;
         max-width: 3rem;
@@ -325,7 +373,16 @@
         left: -5rem;
         width: 240px;
     }
+    .width-ct {
+        width: 95%;
+        box-shadow: 0px 0px 9px 2px #0000001f;
     
+    }
+
+    .row-lr {
+        margin-left: 2rem;
+        margin-right: -5rem;
+    }
 }
 
 
@@ -618,7 +675,13 @@
     .vt-l {
         margin-left: 18rem !important;
     }
-
+    .vt-center {
+        margin-left: 33rem;
+    }
+    .vt-btn {
+        margin-left: 0rem;
+        width:50%;
+    }
     .img-size {
         border-radius: 10rem;
         max-width: 3rem;
@@ -628,7 +691,15 @@
         left: -5rem;
         width: 240px;
     }
-    
+    .width-ct {
+        width: 95%;
+        box-shadow: 0px 0px 9px 2px #0000001f;
+    }
+
+    .row-lr {
+        margin-left: 0rem;
+        margin-right: -7rem;
+    }
 }
 
 
@@ -1473,7 +1544,13 @@
     .vt-l {
         margin-left: 0rem !important;
     }
-
+    .vt-center {
+        margin-left: 17rem;
+    }
+    .vt-btn {
+        margin-left: 11rem;
+        width:50%;
+    }
     .img-size {
         border-radius: 10rem;
         max-width: 3rem;
@@ -1498,10 +1575,19 @@
         
         margin-left: 3rem !important;
     }
+    .width-ct {
+        width: 95%;
+        box-shadow: 0px 0px 9px 2px #0000001f;
+    }
+
+    .row-lr {
+        margin-left: 0rem;
+        margin-right: 0rem;
+    }
 
     
     /* Large Mobile :480px. */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media only screen and (min-width: 300px) and (max-width: 767px) {
         .container {
          max-width: 460px;
         }
@@ -1557,7 +1643,42 @@
            width: 240px;
         }
         .ml-ssm-1 {
-            margin-left: 9rem;
+            margin-left: 7rem;
         }
+    .vt {
+        left: -7rem;
+        top: 105%;
+        color: black;
+        width: 29rem;
+    }
+
+        .vt li {
+            width: 100%;
+        }
+
+    .vt-l {
+        margin-left: 0rem !important;
+    }
+
+    .vt-center {
+        margin-left: 15rem;
+    }
+
+    .vt-btn {
+        margin-left: 11rem;
+        width: 50%;
+    }
+
+    .img-size {
+        border-radius: 10rem;
+        max-width: 3rem;
+        text-align: right;
+    }
+
+    .product-img a img {
+        width: 100% !important;
+        height: 30rem;
+    }
+
 }
 }
