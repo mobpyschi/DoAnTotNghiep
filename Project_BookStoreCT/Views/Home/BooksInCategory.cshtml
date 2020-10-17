@@ -136,8 +136,8 @@
                                                 <h4><a href="#">@b.bookName</a></h4>
                                                 <div class="product-price">
                                                     <ul>
-                                                        <li>@b.saleOffPrice VNĐ</li>
-                                                        <li class="old-price">@b.price VNĐ</li>
+                                                        <li>@string.Format("{0:n0}", b.saleOffPrice) VNĐ</li>
+                                                        <li class="old-price">@string.Format("{0:n0}",b.price) VNĐ</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -181,7 +181,7 @@
                                                 <h4><a href="#">@b.bookName</a></h4>
                                                 <div class="product-price">
                                                     <ul>
-                                                        <li>@b.price VNĐ</li>
+                                                        <li>@string.Format("{0:n0}", b.price) VNĐ</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -233,8 +233,8 @@
                                                     <h4><a href="#">@b.bookName</a></h4>
                                                     <div class="product-price">
                                                         <ul>
-                                                            <li>@b.saleOffPrice VNĐ</li>
-                                                            <li class="old-price">@b.price VNĐ</li>
+                                                            <li>@string.Format("{0:n0}", b.saleOffPrice) VNĐ</li>
+                                                            <li class="old-price">@string.Format("{0:n0}", b.price) VNĐ</li>
                                                         </ul>
                                                     </div>                    
                                                 </div>
@@ -280,7 +280,7 @@
                                                     <h4><a href="#">@b.bookName</a></h4>
                                                     <div class="product-price">
                                                         <ul>
-                                                            <li>@b.price VNĐ</li>
+                                                            <li>@string.Format("{0:n0}", b.price) VNĐ</li>
                                                         </ul>
                                                     </div>
                                                 </div>

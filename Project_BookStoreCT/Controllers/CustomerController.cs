@@ -179,11 +179,10 @@ namespace Project_BookStoreCT.Controllers
             using(DataContext db = new DataContext())
             {
                 Customer c = db.Customers.Where(x => x.Customer_ID== cus.userid).FirstOrDefault();
-                if (cus.email != null)
+                if (cus.username != null || cus.phone != null || cus.address != null )
                 {
                     
                     c.customerName = cus.username;
-                    c.customerEmail = cus.email;
                     c.customerPhone = cus.phone;
                     c.role = 3;
                     c.sex = Convert.ToBoolean(cus.sex);

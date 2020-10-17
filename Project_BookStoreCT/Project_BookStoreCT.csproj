@@ -17,7 +17,7 @@
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <Use64BitIISExpress />
+    <Use64BitIISExpress>true</Use64BitIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -274,64 +274,6 @@
     <Content Include="AdminStyles\Index\files\assets\icon\simple-line-icons\css\simple-line-icons.css" />
     <Content Include="AdminStyles\Index\files\assets\icon\themify-icons\fonts\themify9f24.svg" />
     <Content Include="AdminStyles\Index\files\assets\icon\themify-icons\themify-icons.css" />
-    <Content Include="AdminStyles\Index\files\assets\images\animate.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\auth\Logo-small-bottom.png" />
-    <Content Include="AdminStyles\Index\files\assets\images\avatar-1.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\avatar-2.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\avatar-3.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\avatar-4.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\avatar-5.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\card-block\card1.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\card-block\card13.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\card-block\card14.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\card-block\card2.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\commingsoon\cs-1.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\commingsoon\cs-2.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\complete.png" />
-    <Content Include="AdminStyles\Index\files\assets\images\details_close.png" />
-    <Content Include="AdminStyles\Index\files\assets\images\details_open.png" />
-    <Content Include="AdminStyles\Index\files\assets\images\error\error-1.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\error\error-2.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\error\error-3.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\error\error-4.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\error\error-5.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\error\error-6.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\logo-ct.png" />
-    <Content Include="AdminStyles\Index\files\assets\images\logo.png" />
-    <Content Include="AdminStyles\Index\files\assets\images\mega-menu\01.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\mega-menu\03.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\Modal\overflow.html" />
-    <Content Include="AdminStyles\Index\files\assets\images\Modal\overflow.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav1.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav10.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav11.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav12.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav2.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav3.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav4.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav5.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav6.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav7.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav8.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\navbar\nav9.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\select-arrow.png" />
-    <Content Include="AdminStyles\Index\files\assets\images\slider\slide1.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\slider\slide2.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\slider\slide3.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\slider\slide4.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\slider\slider5.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\slider\slider6.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\slider\slider7.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\task\task-u1.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\task\task-u2.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\task\task-u3.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\task\task-u4.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\tooltip\Euclid.png" />
-    <Content Include="AdminStyles\Index\files\assets\images\widget\p1.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\widget\p2.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\widget\p3.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\widget\p4.jpg" />
-    <Content Include="AdminStyles\Index\files\assets\images\widget\sale-img.jpg" />
     <Content Include="AdminStyles\Index\files\assets\js\animation.js" />
     <Content Include="AdminStyles\Index\files\assets\js\bootstrap-growl.min.js" />
     <Content Include="AdminStyles\Index\files\assets\js\classie.js" />
@@ -1170,7 +1112,6 @@
     <Content Include="bin\Microsoft.ApplicationInsights.dll" />
     <Content Include="bin\Microsoft.AspNet.TelemetryCorrelation.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
     <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
     <Content Include="bin\Newtonsoft.Json.dll" />
     <Content Include="bin\System.Diagnostics.DiagnosticSource.dll" />
@@ -1618,10 +1559,6 @@
     <Content Include="img\icon-img\service-2.png" />
     <Content Include="img\icon-img\service-3-white.png" />
     <Content Include="img\icon-img\service-3.png" />
-    <Content Include="img\logo\2.png" />
-    <Content Include="img\logo\3.png" />
-    <Content Include="img\logo\4.png" />
-    <Content Include="img\logo\5.png" />
     <Content Include="img\logo\logo.png" />
     <Content Include="img\post\1.jpg" />
     <Content Include="img\post\2.jpg" />
@@ -1708,7 +1645,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="obj\Debug\build.force" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="obj\Debug\Project_BookStoreCT.csproj.CoreCompileInputs.cache" />
     <Content Include="obj\Debug\Project_BookStoreCT.csprojAssemblyReference.cache" />
@@ -1803,6 +1739,7 @@
     <Content Include="Models\DataModels\BookshopDB.edmx.diagram">
       <DependentUpon>BookshopDB.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

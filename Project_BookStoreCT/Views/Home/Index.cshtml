@@ -99,14 +99,17 @@
             <ul>
                 @for (int i = 0; i < b.star; i++)
                 {
-<li><a href="#"><i class="fa fa-star"></i></a></li>}
+                <li><a href="#"><i class="fa fa-star"></i></a></li>}
             </ul>
         </div>
-        <h4><a href="~/Home/BookDetail?bid=@b.Book_ID">@b.bookName</a></h4>
-        <div class="product-price">
+        <div style="height: 2rem">
+            <h4><a href="~/Home/BookDetail?bid=@b.Book_ID">@b.bookName</a></h4>
+        </div>
+        
+        <div class="product-price mt-40">
             <ul>
-                <li>@b.saleOffPrice VNĐ</li>
-                <li class="old-price">@b.price VNĐ</li>
+                <li>@String.Format("{0:n0}", b.saleOffPrice) VNĐ</li>
+                <li class="old-price">@String.Format("{0:n0}", b.price) VNĐ</li>
             </ul>
         </div>
     </div>
@@ -144,30 +147,33 @@
             <ul>
                 @for (int i = 0; i < b.star; i++)
                 {
-<li><a href="#"><i class="fa fa-star"></i></a></li>}
+                    <li><a href="#"><i class="fa fa-star"></i></a></li>
+}
             </ul>
         </div>
-        <h4><a href="~/Home/BookDetail?bid=@b.Book_ID">@b.bookName</a></h4>
-        <div class="product-price">
-            <ul>
-                <li>@b.price VNĐ</li>
-                @*<li class="old-price">@b.price$</li>*@
-            </ul>
+        <div style="height: 2rem">
+            <h4 class="mb-20"><a href="~/Home/BookDetail?bid=@b.Book_ID">@b.bookName</a></h4>
         </div>
-    </div>
-    <div class="product-link">
-        <div class="product-button">
-            <a onclick="AddToCart(@b.Book_ID)" title="Thêm vào giỏ"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+            <div class="product-price mt-40">
+                <ul>
+                    <li>@String.Format("{0:n0}", b.price) VNĐ</li>
+                    @*<li class="old-price">@b.price$</li>*@
+                </ul>
+            </div>
         </div>
-        <div class="add-to-link">
-            <ul>
-                
+        <div class="product-link">
+            <div class="product-button">
+                <a onclick="AddToCart(@b.Book_ID)" title="Thêm vào giỏ"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+            </div>
+            <div class="add-to-link">
+                <ul>
+
                     <li><a href="~/Home/BookDetail?bid=@b.Book_ID" title="Xem chi tiết"><i class="fas fa-external-link-alt"></i></a></li>
-                
-            </ul>
+
+                </ul>
+            </div>
         </div>
-    </div>
-</div>}
+    </div>}
             <!-- single-product-end -->
         </div>}
                 </div>
@@ -202,11 +208,11 @@
             <li><a href="#"><i class="fa fa-star"></i></a></li>}
                         </ul>
                     </div>
-                    <h4><a href="#">@b.bookName</a></h4>
-                    <div class="product-price">
+                    <h4 class="mb-20"><a href="#">@b.bookName</a></h4>
+                    <div class="product-price mt-40">
                         <ul>
                             <li>@b.saleOffPrice$</li>
-                            <li class="old-price">@b.price$</li>
+                            <li class="old-price">@String.Format("{0:n0}", b.price) VNĐ</li>
                         </ul>
                     </div>
                 </div>
@@ -256,11 +262,11 @@
         <li><a href="#"><i class="fa fa-star"></i></a></li>}
                         </ul>
                     </div>
-                    <h4><a href="#">@b.bookName</a></h4>
+                    <h4 class="mb-20"><a href="#">@b.bookName</a></h4>
                     <div class="product-price">
                         <ul>
                             <li>@b.saleOffPrice$</li>
-                            <li class="old-price">@b.price$</li>
+                            <li class="old-price">@String.Format("{0:n0}", b.price) VNĐ</li>
                         </ul>
                     </div>
                 </div>
@@ -303,10 +309,10 @@
         <li><a href="#"><i class="fa fa-star"></i></a></li>}
                         </ul>
                     </div>
-                    <h4><a href="#">@b.bookName</a></h4>
+                    <h4 class="mb-20"><a href="#">@b.bookName</a></h4>
                     <div class="product-price">
                         <ul>
-                            <li>@b.price$</li>
+                            <li>@String.Format("{0:n0}", b.price) VNĐ</li>
                         </ul>
                     </div>
                 </div>
