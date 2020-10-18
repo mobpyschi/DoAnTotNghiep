@@ -1,8 +1,7 @@
 ﻿@using Project_BookStoreCT.Models.ViewModels;
-@{
-    ViewBag.Title = "ViewCart";
-    Layout = "~/Views/Shared/_LayoutMain.cshtml";
-}
+@using Project_BookStoreCT.Models.ServiceModels
+@{ ViewBag.Title = "ViewCart";
+                Layout = "~/Views/Shared/_LayoutMain.cshtml"; }
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <div class="entry-header-area">
     <div class="container">
@@ -40,16 +39,15 @@
                                 {
                                     foreach (Cart_ViewModels cart in (List<Cart_ViewModels>)Session["Cart"])
                                     {
-                                        <tr id="row_@cart.book_id">
-                                            <td class="product-thumbnail">@cart.book_id</td>
-                                            <td class="product-thumbnail"><a href="#"><img src="~/imgs/@cart.image" alt="man" /></a></td>
-                                            <td class="product-name"><a href="#"><b>@cart.bookname</b></a></td>
-                                            <td class="product-price"><span class="amount">@cart.price$</span></td>
-                                            <td class="product-quantity"><input id="quantity" name="quantity" type="number" value="@cart.number"></td>
-                                            <td class="product-subtotal">@cart.total$</td>
-                                            <td class="product-remove"><button class="btn btn-danger" onclick="RemoveItemCart(@cart.book_id,this)"><i class="fa fa-times"></i></button></td>
-                                        </tr>
-                                    }
+                    <tr id="row_@cart.book_id">
+                        <td class="product-thumbnail">@cart.book_id</td>
+                        <td class="product-thumbnail"><a href="#"><img src="~/imgs/@cart.image" alt="man" /></a></td>
+                        <td class="product-name"><a href="#"><b>@cart.bookname</b></a></td>
+                        <td class="product-price"><span class="amount"> @String.Format("{0:n0}", cart.price) VNĐ</span></td>
+                        <td class="product-quantity"><input id="quantity" name="quantity" type="number" value="@cart.number"></td>
+                        <td class="product-subtotal">@String.Format("{0:n0}", cart.total) VNĐ</td>
+                        <td class="product-remove"><button class="btn btn-danger" onclick="RemoveItemCart(@cart.book_id,this)"><i class="fa fa-times"></i></button></td>
+                    </tr>}
                                 }
                             </tbody>
                         </table>
@@ -109,12 +107,10 @@
                                         <strong>
                                             @if (Session["ThanhTien"] != null)
                                             {
-                                                <span class="amount">@Session["ThanhTien"] VNĐ</span>
-                                            }
+                                <span class="amount">@String.Format("{0:n0}", Session["ThanhTien"]) VNĐ</span> }
                                             else
                                             {
-                                                <span class="amount">0 VNĐ</span>
-                                            }
+                                <span class="amount">0 VNĐ</span>}
                                         </strong>
                                     </td>
                                 </tr>
@@ -125,7 +121,14 @@
                                 <td></td>
                                 <td>
                                     <div style="margin-right:35px" class="wc-proceed-to-checkout">
-                                        <a href="~/Home/Bill">Tiến hành đặt hàng</a>
+                                        @if (SessionCheckingCustomes.customerID == null)
+                                        {
+                                        <a class="view-cart btn-open">Tiến hành đặt hàng</a> }
+                                        else
+                                        {
+                                        <a class="view-cart" href="~/Home/Bill">Tiến hành đặt hàng</a>
+                                        }
+                                        
                                     </div>
                                 </td>
                             </tr>

@@ -17,7 +17,7 @@
         margin-left:53rem;
     }
     .vt-btn{
-        margin-left:4rem;
+        margin-left:2rem;
     }
     .row-lr {
         margin-left: 4rem;
@@ -30,7 +30,7 @@
     }
     .mini-cart-sub{
         left:-5rem;
-        width:240px;
+        width:255px;
     }
     .width-ct {
         box-shadow: 0px 0px 9px 2px #0000001f;
@@ -78,7 +78,8 @@
         margin-left:49rem ;
     }
     .vt-btn {
-        margin-left: 4rem;
+        margin-left: 0rem;
+        width: 30%;
     }
     .img-size {
         border-radius: 10rem;
@@ -87,7 +88,7 @@
     }
     .mini-cart-sub {
         left: -5rem;
-        width: 240px;
+        width: 255px;
     }
     .width-ct {
         width: 90%;
@@ -224,7 +225,7 @@
     }
     .vt-btn {
         margin-left: 0rem;
-        width:50%;
+        width:35%;
     }
     .img-size {
         border-radius: 10rem;
@@ -233,7 +234,7 @@
     }
     .mini-cart-sub {
         left: -5rem;
-        width: 240px;
+        width: 255px;
     }
     .width-ct {
         width: 95%;
@@ -427,11 +428,11 @@
         margin-left: 28rem !important;
     }
     .vt-center {
-        margin-left: 39rem;
+        margin-left: 41.7rem;
     }
     .vt-btn {
         margin-left: 0rem;
-        width:50%;
+        width:35%;
     }
     .img-size {
         border-radius: 10rem;
@@ -441,7 +442,7 @@
 
     .mini-cart-sub {
         left: -5rem;
-        width: 240px;
+        width: 255px;
     }
     .width-ct {
         width: 95%;
@@ -776,8 +777,8 @@
         margin-left: 33rem;
     }
     .vt-btn {
-        margin-left: 0rem;
-        width:50%;
+        margin-left: -2rem;
+        width: 40%;
     }
     .img-size {
         border-radius: 10rem;
@@ -786,7 +787,7 @@
     }
     .mini-cart-sub {
         left: -5rem;
-        width: 240px;
+        width: 255px;
     }
     .width-ct {
         width: 95%;
@@ -1373,8 +1374,8 @@
     }
 
     .mini-cart-sub {
-        left: -5rem;
-        width: 240px;
+        left: 8rem;
+        width: 255px;
         transform: translateX(-50%);
     }
 
@@ -1907,7 +1908,7 @@
 
     .vt-btn {
         margin-left: 11rem;
-        width: 50%;
+        width: 40%;
     }
 
     .img-size {
@@ -2025,8 +2026,8 @@
         }
 
         .mini-cart-sub {
-           left: -5rem;
-           width: 240px;
+           left: 8rem;
+           width: 255px;
         }
         .ml-ssm-1 {
             margin-left: 7rem;
@@ -2052,7 +2053,7 @@
 
     .vt-btn {
         margin-left: 11rem;
-        width: 50%;
+        width: 40%;
     }
 
     .img-size {

@@ -599,7 +599,7 @@ body {
 }
 .header-mid-area .my-cart ul > li .cart-product .single-cart .cart-info h5 a {
     color: #666;
-    font-family: Rufina;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 17px;
@@ -612,21 +612,21 @@ body {
 }
 .cart-product .single-cart .cart-info p {
     margin-bottom: 0;
-    font-family: Rufina;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
     font-size: 15px;
 }
 .cart-totals {
     margin-bottom: 15px;
 }
-.cart-totals h5 {
-    color: #606060;
-    display: block;
-    font-size: 15px;
-    font-weight: 400;
-    font-family: Rufina;
-    margin: 0;
-    text-transform: uppercase;
-}
+    .cart-totals h5 {
+        color: #606060;
+        display: block;
+        font-size: 15px;
+        font-weight: 400;
+        font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+        margin: 0;
+        text-transform: uppercase;
+    }
 .cart-totals h5 span {
     display: block;
     float: right;
@@ -656,7 +656,8 @@ body {
     text-transform: uppercase;
     width: 100%;
     transition: .3s;
-    font-family: Rufina;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    cursor: pointer;
 }
 .home-3 .header-mid-area .my-cart ul > li .mini-cart-sub .cart-bottom a {
     color: #fff;
@@ -900,7 +901,7 @@ body {
     top: 0;
     transition: .5s;
     width: 100%;
-    z-index: 99999999;
+    z-index: 99999;
 }
 
 /*----------------------------------------*/
@@ -2260,7 +2261,7 @@ a#scrollUp {
     right: 12px;
     text-align: center;
     width: 40px;
-    z-index: 9999;
+    z-index: 99999 !important;
     transition: .3s;
 }
 a#scrollUp:hover {
@@ -6333,3 +6334,56 @@ p.lost-password a:hover {
 .quickview-active:hover .owl-nav button {
     opacity: 1;
 }
+
+/*Custom Notification(Tao thong bao)*/
+.background-blurry {
+    width: 100%;
+    height: 100%;
+    background-color: #d0d0d060;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 999999;
+    opacity: 0;
+    visibility:hidden;
+}
+.box-note {
+    width: 300px;
+    height: 155px;
+    background-color: white;
+    text-align: center;
+    border-radius: 5px 5px;
+    box-shadow: 1px 5px 5px rgba(199, 163, 163, 0.76);
+    position: fixed;
+    top: 40%;
+    left: 40%;
+    z-index: 99999999;
+    opacity: 0;
+    visibility: hidden;
+}
+.box-header {
+    background-color: #f5f5f5;
+    height:3rem;
+}
+.box-header h3 {
+    width:80%;
+    float:left;
+    margin-left:30px;
+}
+.box-content {
+    padding: 1rem 1rem;
+    width:100%;
+}
+
+.box-footer a.btn-login {
+    padding: 5px 10px;
+    border: none;
+    background-color: #f07c29;
+    color:white;
+    border-radius:3px;
+}
+.box-open{
+    opacity:1;
+    visibility:visible;
+}
+/*=================================*/

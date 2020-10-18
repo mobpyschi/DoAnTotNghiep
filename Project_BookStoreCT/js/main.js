@@ -519,7 +519,21 @@
         }
         sidemenuDropdown();
     }
+    $(document).ready(function () {
+        $('.btn-open').click(function (event) {
+            $('.box-note').addClass('box-open');
+            $('div.background-blurry').addClass('box-open');
+        })
 
+        $('.btn-close').click(function (event) {
+            $('.box-note').removeClass('box-open');
+            $('div.background-blurry').removeClass('box-open');
+        })
+        $('.background-blurry').click(function (event) {
+            $('.box-note').removeClass('box-open');
+            $('div.background-blurry').removeClass('box-open');
+        })
+    });
 
 
 })(jQuery);
