@@ -128,6 +128,7 @@
             }).done(function (data) {
                 if (data.mess_ == 1) {
                     swal("Sửa thành công")
+                    location.href = '/Admin/UsersIndex'
                 }
                 else {
                     swal("Sửa thất bại")

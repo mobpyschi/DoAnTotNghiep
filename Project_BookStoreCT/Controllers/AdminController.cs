@@ -351,7 +351,6 @@ namespace Project_BookStoreCT.Controllers
             {
                 Theme theme = new Theme();
                 theme.themeName = themes.tenTV;
-                theme.themeNameForeign = themes.nameEnglish;
                 theme.description = themes.description;
                 db.Themes.Add(theme);
                 db.SaveChanges();
@@ -400,7 +399,6 @@ namespace Project_BookStoreCT.Controllers
                 if (theme != null)
                 {
                     theme.themeName = themes.tenTV;
-                    theme.themeNameForeign = themes.nameEnglish;
                     theme.description = themes.description;
                     db.SaveChanges();
                     return Json(new { mess_ = 1 });
@@ -727,7 +725,7 @@ namespace Project_BookStoreCT.Controllers
                                       join b in db.Books
                                       on d.Book_ID equals b.Book_ID
                                       where d.Bill_ID == bid
-                                      select new { d.quantity, b.bookName, b.image }).ToList();
+                                      select new { d.quantity ,b.price , b.bookName, b.image }).ToList();
                     List<DetailBills_ViewModels> details = new List<DetailBills_ViewModels>();
                     foreach(var d in detailBill)
                     {

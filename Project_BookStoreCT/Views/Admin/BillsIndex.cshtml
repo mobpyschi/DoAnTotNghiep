@@ -54,7 +54,7 @@
                                             <th>Số điện thoại</th>
                                             <th>Ngày đặt hàng</th>
                                             <th>Thanh toán</th>
-                                            <th>Giao hàng</th>
+                                            <th>Trạng thái đơn hàng</th>
                                             <th>Ngày giao</th>
                                             <th>Tổng tiền hóa đơn</th>                          
                                             <th>Thao tác</th>
@@ -78,14 +78,14 @@
                                             }
                                             @if (b.isDelivered == true)
                                             {
-                                                <td>Đã giao hàng</td>
+                                                    <td style="color:forestgreen"> Đã duyệt</td>
                                             }
                                             else
                                             {
-                                                <td>Chưa giao hàng</td>
+                                                    <td style="color:red">Chờ duyệt</td>
                                             }
                                             <td>@b.delivery_date</td>
-                                            <td>@b.total</td>    
+                                            <td>@b.total VNĐ</td>    
                                             <td>
                                                 <input type="button" onclick="Detail(@b.Bill_ID)" class="btn btn-primary" value="Chi tiết hóa đơn" />
                                                 <input type="button" onclick="Delete(@b.Bill_ID,this)" class="btn btn-danger" value="Xóa" />

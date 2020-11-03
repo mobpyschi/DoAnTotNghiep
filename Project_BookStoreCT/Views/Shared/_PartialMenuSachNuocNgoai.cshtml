@@ -7,10 +7,10 @@
         @foreach (GetThemeSachNuocNgoai theme in Model)
         {
             <span style="padding-bottom:25px;">
-                <a class="title">@theme.themeName</a>
+                <a class="title">@theme.themeForeignName</a>
                 @{
                     DataContext db = new DataContext();
-                    var getcate = from c in db.Categories join t in db.Themes on c.theme_id equals t.Theme_ID where t.themeNameForeign == theme.themeName select c;
+                    var getcate = from c in db.Categories join t in db.ThemeForeigns on c.theme_id equals t.ThemeForeign_ID where t.ThemeForeignName == theme.themeForeignName select c;
                     foreach (var cate in getcate)
                     {
                         <a href="shop.html">@cate.categoryNameForeign</a>

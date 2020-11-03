@@ -21,7 +21,7 @@
                     <li class="breadcrumb-item">
                         <a href="index.html"><i class="feather icon-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#!">Index</a> </li>
+                    <li class="breadcrumb-item"><a href="#!">Danh sách khách hàng</a> </li>
                 </ul>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="col-md-12">
                     <div class="card table-card">
                         <div class="card-header">
-                            <h5 style="margin-bottom:1rem">Customer Index</h5>
+                            <h5 style="margin-bottom:1rem">Danh sách khách hàng</h5>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="card-block p-b-0">
                             @*<a href="~/Admin/AddNewUsers" style="color:white;margin-left:15px;margin-top:20px;margin-bottom:35px;" class="btn btn-success">Thêm mới</a>*@
-                            <div class="table-responsive ml-md-4">
+                            <div class="table-responsive">
                                 <table id="dtBasicExample" class="table table-hover m-b-1 table-striped table-bordered  table-md">
                                     <thead>
                                         <tr>
@@ -79,8 +79,9 @@
                                                 <td><img style="height:50px;width:50px;" src="~/img/avatar/@cus.avatar" /></td>
                                                 <td>@cus.role</td>
                                                 <td>
-                                                    <input type="button" onclick="updateUser(@cus.cus_id,this)" class="btn btn-primary" value="Sửa" />
+                                                    <input type="button" onclick="updateUser(@cus.cus_id,this)" class="btn btn-success" value="Sửa" />
                                                     <input type="button" onclick="deleteUser(@cus.cus_id,this)" class="btn btn-danger" value="Xóa" />
+                                                    <input type="button" onclick="resetPass(@cus.cus_id,this)" class="btn btn-primary" value="Reset Password" />
                                                 </td>
                                             </tr>
 }

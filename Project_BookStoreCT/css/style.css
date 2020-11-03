@@ -535,7 +535,7 @@ body {
     bottom: 0;
     color: #fff;
     display: inline-block;
-    font-size: 18px;
+    font-size: 12px;
     height: 30px;
     left: 24px;
     line-height: 30px;
@@ -742,21 +742,23 @@ body {
     opacity: 1;
 }
 .menu-area ul li a:before {
-    background: #f07c29 none repeat scroll 0 0;
+    background: #ffffff none repeat scroll 0 0;
     bottom: 0;
     content: "";
-    height: 3px;
+    height: 2px;
     left: 0;
     opacity: 0;
     position: absolute;
     transition: .5s;
     width: 0%;
 }
-.menu-area ul li:hover a:before,
-.menu-area ul li.active a:before {
-    width: 220%;
-    opacity: 1;
-}
+    .menu-area ul li:hover a:before,
+    .menu-area ul li.active a:before {
+        width: 91%;
+        opacity: 1;
+        margin-left: 0.5rem;
+        top: 45px;
+    }
 .menu-area ul li a:after,
 .safe-area a:after {
     border: 4px solid transparent;
@@ -789,12 +791,14 @@ body {
     padding: 30px 20px;
     position: absolute;
     z-index: 6;
-    width: 910px;
+    width: 860px;
     opacity: 0;
     transform: scaleY(0);
     transform-origin: 0 0 0;
     transition: .5s;
     visibility: hidden;
+    display:flex;
+    flex-wrap:wrap;
 }
 .menu-area ul li:hover .mega-menu {
     opacity: 1;
@@ -803,7 +807,7 @@ body {
 }
 .menu-area ul li .mega-menu span {
     float: left;
-    width: 25%;
+    width: 30%;
     padding-right: 20px;
 }
 .menu-area ul li .mega-menu span a.title {
@@ -4876,7 +4880,7 @@ nav.menu .cr-dropdown ul {
 .login-form {
     border: 1px solid rgba(0, 0, 0, 0.12);
     display: inline-block;
-    margin-left: 0;
+    margin-left:-9px;
     margin-right: 0;
     padding: 25px 30px;
     width: 100%;
@@ -5455,7 +5459,7 @@ nav.menu .cr-dropdown ul {
             font-weight: normal;
             height: 40px;
             padding: 0 5px 0 10px;
-            width: 60px;
+            width: 70px;
             font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
             font-weight: 400;
         }
@@ -6339,51 +6343,93 @@ p.lost-password a:hover {
 .background-blurry {
     width: 100%;
     height: 100%;
-    background-color: #d0d0d060;
+    background-color: #332728a3;
     position: fixed;
     top: 0px;
     left: 0px;
     z-index: 999999;
     opacity: 0;
-    visibility:hidden;
+    visibility: hidden;
+    transition: 0.6s;
 }
+
 .box-note {
-    width: 300px;
-    height: 155px;
-    background-color: white;
-    text-align: center;
-    border-radius: 5px 5px;
-    box-shadow: 1px 5px 5px rgba(199, 163, 163, 0.76);
+    width: 30%;
+    height: 230px;
+    /*box-shadow: 1px 5px 5px rgba(199, 163, 163, 0.76);*/
     position: fixed;
-    top: 40%;
-    left: 40%;
+    top: 30%;
+    left: 35%;
     z-index: 99999999;
     opacity: 0;
-    visibility: hidden;
+    visibility: visible;
+    transition: 0.6s;
+    transform: translateY(-500px);
+}
+.box-form {
+    width:95%;
+    height: 200px;
+    margin:1rem;
+    background-color:white;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 1px 5px 5px rgba(199, 163, 163, 0.76);
+    position: fixed;
+    z-index: 99999999;
 }
 .box-header {
-    background-color: #f5f5f5;
-    height:3rem;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    background-color: #000000;
+    height: 3.2rem;
 }
-.box-header h3 {
-    width:80%;
-    float:left;
-    margin-left:30px;
-}
+    .box-header h4 {
+        width: 80%;
+        float: left;
+        margin-left: 50px;
+        color: #cf1818;
+        margin-top:0.7rem;
+    }
 .box-content {
     padding: 1rem 1rem;
     width:100%;
+    height:65px;
 }
-
+.box-footer{
+    width:100%;
+    height:32px;
+    margin-top:4em;
+    display:flex;
+}
 .box-footer a.btn-login {
-    padding: 5px 10px;
+    padding: 5px ;
+    margin-left:19rem;
     border: none;
     background-color: #f07c29;
     color:white;
-    border-radius:3px;
+    border-radius:5px;
 }
-.box-open{
-    opacity:1;
-    visibility:visible;
+
+.box-open {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.6s;
+    transform: translateY(0px);
 }
 /*=================================*/
+/*===============Noted=============*/
+.alert-noted-1 {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+}
+.alert-noted-2 {
+    position: fixed;
+    opacity: 0;
+    visibility: hidden;
+}
+.alert-noted-open {
+    position: inherit;
+    opacity: 1;
+    visibility: visible;
+}

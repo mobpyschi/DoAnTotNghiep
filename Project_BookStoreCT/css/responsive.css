@@ -1,4 +1,4 @@
-@media (min-width: 1300px) and (max-width: 1500px) {
+@media (min-width: 1300px) and (max-width: 1600px) {
     .home-3-main {
         max-width: 1200px;
     }
@@ -14,7 +14,7 @@
         margin-left: 37rem !important;
     }
     .vt-center {
-        margin-left:53rem;
+        margin-left:51rem;
     }
     .vt-btn{
         margin-left:2rem;
@@ -47,14 +47,14 @@
             color: white;
             background-color: #ed6200;
         }
-    .btn-upd-r button {
+    .btn-upd-r a {
         margin-left: -4rem !important;
         width: 45%;
         color: white;
         background-color: #ff6a00;
     }
 
-        .btn-upd-r button:hover {
+        .btn-upd-r a:hover {
             color: white;
             background-color: #ed6200;
         }
@@ -112,14 +112,14 @@
             background-color: #ed6200;
         }
 
-    .btn-upd-r button {
+    .btn-upd-r a {
         margin-left: -4rem !important;
         width: 45%;
         color: white;
         background-color: #ff6a00;
     }
 
-        .btn-upd-r button:hover {
+        .btn-upd-r a:hover {
             color: white;
             background-color: #ed6200;
         }
@@ -259,14 +259,14 @@
             background-color: #ed6200;
         }
 
-    .btn-upd-r button {
-        margin-left: -3rem !important;
+    .btn-upd-r a {
+        margin-left: -4rem !important;
         width: 45%;
         color: white;
         background-color: #ff6a00;
     }
 
-        .btn-upd-r button:hover {
+        .btn-upd-r a:hover {
             color: white;
             background-color: #ed6200;
         }
@@ -467,14 +467,14 @@
             background-color: #ed6200;
         }
 
-    .btn-upd-r button {
-        margin-left: -2rem !important;
+    .btn-upd-r a {
+        margin-left: -4rem !important;
         width: 45%;
         color: white;
         background-color: #ff6a00;
     }
 
-        .btn-upd-r button:hover {
+        .btn-upd-r a:hover {
             color: white;
             background-color: #ed6200;
         }
@@ -810,14 +810,14 @@
             background-color: #ed6200;
         }
 
-    .btn-upd-r button {
-        margin-left: -1rem !important;
+    .btn-upd-r a {
+        margin-left: -4rem !important;
         width: 45%;
         color: white;
         background-color: #ff6a00;
     }
 
-        .btn-upd-r button:hover {
+        .btn-upd-r a:hover {
             color: white;
             background-color: #ed6200;
         }
@@ -1959,14 +1959,14 @@
             background-color: #ed6200;
         }
 
-    .btn-upd-r button {
-        margin-left: -1rem !important;
+    .btn-upd-r a {
+        margin-left: -4rem !important;
         width: 45%;
         color: white;
         background-color: #ff6a00;
     }
 
-        .btn-upd-r button:hover {
+        .btn-upd-r a:hover {
             color: white;
             background-color: #ed6200;
         }
@@ -2080,15 +2080,14 @@
             background-color: #ed6200;
         }
 
-    .btn-upd-r button {
-        margin-left: 5.7rem !important;
-        width: 30%;
-        float: left;
+    .btn-upd-r a {
+        margin-left: -4rem !important;
+        width: 45%;
         color: white;
         background-color: #ff6a00;
     }
 
-        .btn-upd-r button:hover {
+        .btn-upd-r a:hover {
             color: white;
             background-color: #ed6200;
         }

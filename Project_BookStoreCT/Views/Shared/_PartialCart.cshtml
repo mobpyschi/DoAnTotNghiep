@@ -24,18 +24,19 @@
                 <div class="cart-product">
                     @foreach (Cart_ViewModels cart in (List<Cart_ViewModels>)Session["Cart"])
                     {
-    <div class="single-cart">
-        <div class="cart-img">
-            <a><img src="~/imgs/@cart.image" alt="book" /></a>
-        </div>
-        <div class="cart-info">
-            <h5><a href="#">@cart.bookname</a></h5>
-            <p>@cart.number x @String.Format("{0:n0}", cart.price) VNĐ </p>
-        </div>
-        <div class="cart-icon">
-            <a onclick="RemoveItemCart(@cart.book_id)"><i class="fa fa-remove"></i></a>
-        </div>
-    </div>}
+                         <div class="single-cart">
+                             <div class="cart-img">
+                                 <a><img src="~/imgs/@cart.image" alt="book" /></a>
+                          </div>
+                             <div class="cart-info">
+                                 <h5><a href="#">@cart.bookname</a></h5>
+                              <p>@cart.number x @String.Format("{0:n0}", cart.price) VNĐ </p>
+                             </div>
+                             <div class="cart-icon">
+                                 <a onclick="RemoveItemCart(@cart.book_id)"><i class="fa fa-remove"></i></a>
+                             </div>
+                         </div>
+                     }
                 </div>
                 <div class="cart-totals">
                     <h5>Tổng thành tiền: <span> @String.Format("{0:n0}", total) VNĐ</span></h5>
@@ -56,23 +57,24 @@
         </li>
     </ul>
 </div>
-                     }
-                                else
-                                {
-                    <div class="my-cart">
-                        <ul>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i>GIỎ HÀNG</a>
-                                <span>@count</span>
-                                <div class="mini-cart-sub">
-                                    <div class="cart-bottom">
-                                        <a class="view-cart">Xem giỏ hàng</a>
-                                        <a class="view-cart">Thanh toán</a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>}
+ }
+else
+{
+  <div class="my-cart">
+      <ul>
+          <li>
+              <a href="#"><i class="fa fa-shopping-cart"></i>GIỎ HÀNG</a>
+                  <span>@count</span>
+                    <div class="mini-cart-sub">
+                        <div class="cart-bottom">
+                            <a class="view-cart">Xem giỏ hàng</a>
+                            <a class="view-cart">Thanh toán</a>
+                        </div>
+              </div>
+          </li>
+      </ul>
+  </div>
+}
 <script>
     function RemoveItemCart(bid) {
         $.ajax({

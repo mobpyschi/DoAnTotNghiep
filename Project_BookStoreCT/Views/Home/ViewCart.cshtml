@@ -44,7 +44,7 @@
                         <td class="product-thumbnail"><a href="#"><img src="~/imgs/@cart.image" alt="man" /></a></td>
                         <td class="product-name"><a href="#"><b>@cart.bookname</b></a></td>
                         <td class="product-price"><span class="amount"> @String.Format("{0:n0}", cart.price) VNĐ</span></td>
-                        <td class="product-quantity"><input id="quantity" name="quantity" type="number" value="@cart.number"></td>
+                        <td class="product-quantity"><input id="quantity" name="quantity" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "number" maxlength = "3" value="@cart.number"></td>
                         <td class="product-subtotal">@String.Format("{0:n0}", cart.total) VNĐ</td>
                         <td class="product-remove"><button class="btn btn-danger" onclick="RemoveItemCart(@cart.book_id,this)"><i class="fa fa-times"></i></button></td>
                     </tr>}
@@ -107,10 +107,11 @@
                                         <strong>
                                             @if (Session["ThanhTien"] != null)
                                             {
-                                <span class="amount">@String.Format("{0:n0}", Session["ThanhTien"]) VNĐ</span> }
+                                                  <span class="amount">@String.Format("{0:n0}", Session["ThanhTien"]) VNĐ</span> }
                                             else
                                             {
-                                <span class="amount">0 VNĐ</span>}
+                                                   <span class="amount">0 VNĐ</span>
+                                                   }
                                         </strong>
                                     </td>
                                 </tr>
@@ -123,10 +124,10 @@
                                     <div style="margin-right:35px" class="wc-proceed-to-checkout">
                                         @if (SessionCheckingCustomes.customerID == null)
                                         {
-                                        <a class="view-cart btn-open">Tiến hành đặt hàng</a> }
+                                        <a class="view-cart btn-open" style="cursor:pointer">Tiến hành đặt hàng</a> }
                                         else
                                         {
-                                        <a class="view-cart" href="~/Home/Bill">Tiến hành đặt hàng</a>
+                                        <a class="view-cart" style="cursor:pointer" href="~/Home/Bill">Tiến hành đặt hàng</a>
                                         }
                                         
                                     </div>

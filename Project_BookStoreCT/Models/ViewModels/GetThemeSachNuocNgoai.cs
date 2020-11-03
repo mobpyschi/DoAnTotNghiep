@@ -7,6 +7,6 @@ namespace Project_BookStoreCT.Models.ViewModels
 {
     public class GetThemeSachNuocNgoai
     {
-        public string themeName { get; set; }
+        public string themeForeignName { get; set; }
     }
 }

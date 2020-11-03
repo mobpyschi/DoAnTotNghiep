@@ -21,7 +21,7 @@
                     <li class="breadcrumb-item">
                         <a href="index.html"><i class="feather icon-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#!">Index</a> </li>
+                    <li class="breadcrumb-item"><a href="#!">Danh sách đơn hàng</a> </li>
                 </ul>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="col-md-12">
                     <div class="card table-card">
                         <div class="card-header">
-                            <h5>User Index</h5>
+                            <h5>Danh sách đơn hàng</h5>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
@@ -50,8 +50,11 @@
                                     <thead>
                                         <tr>
                                             <th>Tên sách</th>
+                                            <th>Loại sách</th>
                                             <th>Hình ảnh</th>
                                             <th>Số lượng</th>
+                                            <th>Giá</th>
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -59,6 +62,7 @@
                                         {
                                             <tr>
                                                 <td>@d.bookName</td>
+                                                <td>@d.</td>
                                                 <td><img src="~/imgs/@d.image" style="width:75px;height:100px;"/></td>
                                                 <td>@d.quantity</td>
                                             </tr>

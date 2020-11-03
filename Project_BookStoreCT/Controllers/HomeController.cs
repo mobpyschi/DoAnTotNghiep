@@ -50,11 +50,11 @@ namespace Project_BookStoreCT.Controllers
             {
 
                 List<GetThemeSachNuocNgoai> themes = new List<GetThemeSachNuocNgoai>();
-                var chude = (from c in db.Themes select c).ToList();
+                var chude = (from c in db.ThemeForeigns select c).ToList();
                 foreach (var cd in chude)
                 {
                     GetThemeSachNuocNgoai theme = new GetThemeSachNuocNgoai();
-                    theme.themeName = cd.themeNameForeign;
+                    theme.themeForeignName = cd.ThemeForeignName;
                     themes.Add(theme);
                 }
                 return PartialView("_PartialMenuSachNuocNgoai", themes);

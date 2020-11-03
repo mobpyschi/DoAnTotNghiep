@@ -22,7 +22,7 @@ else
                             @foreach (CusIndex_ViewModels cus in Model)
                             {
                                 <a href="#" onclick="updateCus(@cus.cus_id,this)" class="btn btn-success">Cập nhật</a>
-                                <a href="#" class="btn btn-danger">Đổi mật khẩu</a>
+                                <a  onclick="changePass(@cus.cus_id,this)" class="btn btn-danger">Đổi mật khẩu</a>
                             }
 
                         </div>
@@ -82,5 +82,8 @@ else
     });
     function updateCus(cus_id) {
         location.href = './UpdateCustomer?cid=' + cus_id;
+    }
+    function changePass(cus_id) {
+        location.href = './ChangePass?cid=' + cus_id;
     }
 </script>

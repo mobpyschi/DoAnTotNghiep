@@ -12,23 +12,19 @@ namespace Project_BookStoreCT.Models.DataModels
     using System;
     using System.Collections.Generic;
     
-    public partial class Category
+    public partial class ThemeForeign
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Category()
+        public ThemeForeign()
         {
-            this.Books = new HashSet<Book>();
+            this.Categories = new HashSet<Category>();
         }
     
-        public int Category_ID { get; set; }
-        public string categoryName { get; set; }
-        public string categoryNameForeign { get; set; }
-        public Nullable<int> theme_id { get; set; }
-        public Nullable<int> ThemeForeign_id { get; set; }
+        public int ThemeForeign_ID { get; set; }
+        public string ThemeForeignName { get; set; }
+        public string Decription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book> Books { get; set; }
-        public virtual Theme Theme { get; set; }
-        public virtual ThemeForeign ThemeForeign { get; set; }
+        public virtual ICollection<Category> Categories { get; set; }
     }
 }

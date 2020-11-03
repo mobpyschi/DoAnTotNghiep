@@ -229,12 +229,16 @@
     <Compile Include="Models\DataModels\Theme.cs">
       <DependentUpon>BookshopDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataModels\ThemeForeign.cs">
+      <DependentUpon>BookshopDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DataModels\User.cs">
       <DependentUpon>BookshopDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PostModels\BillsPost.cs" />
     <Compile Include="Models\PostModels\BooksPost.cs" />
     <Compile Include="Models\PostModels\CategorysPost.cs" />
+    <Compile Include="Models\PostModels\changePass.cs" />
     <Compile Include="Models\PostModels\CusPost.cs" />
     <Compile Include="Models\PostModels\LoginPost.cs" />
     <Compile Include="Models\PostModels\SaleOffPost.cs" />
@@ -1797,11 +1801,12 @@
     <Content Include="Views\Home\BooksInCategory.cshtml" />
     <Content Include="Views\Home\BookDetail.cshtml" />
     <Content Include="Views\Admin\ViewRevenue.cshtml" />
-    <Content Include="Views\Customer\RegisterCus.cshtml" />
+    <Content Include="Views\Customer\Registration.cshtml" />
     <Content Include="Views\Shared\_PartialCustomerInformation.cshtml" />
     <Content Include="Views\Admin\CustomersIndex.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Customer\UpdateCustomer.cshtml" />
+    <Content Include="Views\Customer\ChangePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

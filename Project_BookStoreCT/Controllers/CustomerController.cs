@@ -48,7 +48,7 @@ namespace Project_BookStoreCT.Controllers
 
 
         [HttpGet]
-        public ActionResult RegisterCus()
+        public ActionResult Registration()
         {
             using (DataContext db = new DataContext())
             {
@@ -57,7 +57,7 @@ namespace Project_BookStoreCT.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult RegisterCus(CusPost cus)
+        public ActionResult Registration(CusPost cus)
         {
             using (DataContext db = new DataContext())
             {
@@ -203,6 +203,44 @@ namespace Project_BookStoreCT.Controllers
                    
                     return Json(new { mess__ = 0 });
                 }
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ChangePass(int ? cid)
+        {
+            using (DataContext db = new DataContext())
+            {
+                TempData["cid"] = cid;
+                if (cid != null)
+                {
+                    ViewBag.GetInfoCus = (from c in db.Customers where c.Customer_ID == cid select c).ToList();
+                    return View();
+                }
+                else
+                {
+                    return PartialView("_Partial404NotFound");
+                }
+            }
+        }
+        [HttpPost]
+        public ActionResult ChangePass(changePass cus)
+        {
+            using(DataContext db = new DataContext())
+            {
+                Customer c = db.Customers.Where(x => x.Customer_ID == cus.userid).FirstOrDefault();
+                if (Encode.CreateMD5(cus.old_pass) == c.password)
+                {
+                    c.password = Encode.CreateMD5(cus.password);
+                    db.SaveChanges();
+                    return Json(new { mes_check = 1 });  
+                }
+                else
+                {
+                    return Json(new { mes_check = 0 });
+                }
+                
+
             }
         }
     }

@@ -73,7 +73,7 @@ else
                                 <button onclick="Update(@cus.Customer_ID,this)" class="form-control btn ">Cập nhật</button>
                             </div>
                             <div class="col-6 col-sm-6 col-md-6 btn-upd-r">
-                                <button href="~/Admin/UsersIndex" class="form-control btn ">Trở về</button>
+                                <a href="~/Customer/Index" class="form-control btn ">Trở về</a>
                             </div>
                         </div>
 
@@ -128,11 +128,11 @@ else
                 data: formData
             }).done(function (data) {
                 if (data.mess__ == 1) {
-                    alert("Sửa thành công")
+                    alert("Cập nhật thành công")
                     location.href = '/Customer/Index'
                 }
                 else {
-                    alert("Sửa thất bại")
+                    alert("Cập nhật thất bại")
                 }
             })
         }

@@ -20,7 +20,7 @@
                     <li class="breadcrumb-item">
                         <a href="index.html"><i class="feather icon-home"></i></a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#!">Index</a> </li>
+                    <li class="breadcrumb-item"><a href="#!">Danh sách nhân viên</a> </li>
                 </ul>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <div class="col-md-12">
                     <div class="card table-card">
                         <div class="card-header">
-                            <h5>User Index</h5>
+                            <h5>Danh sách nhân viên</h5>
                             <div class="card-header-right">
                                 <ul class="list-unstyled card-option">
                                     <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
@@ -44,13 +44,13 @@
                             </div>
                         </div>
                         <div class="card-block p-b-0">
-                            <a href="~/Admin/AddNewUsers"  style="color:white;margin-left:15px;margin-top:20px;margin-bottom:35px;" class="btn btn-success">Thêm mới</a>
-                            <div class="table-responsive">
-                                <table id="dtBasicExample" class="table table-hover m-b-0 table-striped table-bordered table-sm">
+                            @*<a href="~/Admin/AddNewUsers"  style="color:white;margin-left:15px;margin-top:20px;margin-bottom:35px;" class="btn btn-success">Thêm mới</a>*@
+                            <div class="table-responsive  ">
+                                <table id="dtBasicExample" class="table table-hover m-b-1 table-striped table-bordered  table-md">
                                     <thead>
                                         <tr>
                                             <th>Họ tên</th>
-                                            <th>Địa chỉ</th>
+                                            <th style="width:3rem">Địa chỉ</th>
                                             <th>Email</th>
                                             <th>Số điện thoại</th>
                                             <th>Giới tính</th>
@@ -78,8 +78,9 @@
                                                 <td><img style="height:50px;width:50px;" src="~/img/avatar/@user.avatar" /></td>
                                                 <td>@user.role</td>
                                                 <td>
-                                                    <input type="button" onclick="updateUser(@user.user_id,this)" class="btn btn-primary" value="Sửa" />
+                                                    <input type="button" onclick="updateUser(@user.user_id,this)" class="btn btn-success" value="Sửa" />
                                                     <input type="button" onclick="deleteUser(@user.user_id,this)" class="btn btn-danger" value="Xóa" />
+                                                    <input type="button" onclick="resetPass(@user.user_id,this)" class="btn btn-primary" value="Reset Password" />
                                                 </td>
                                             </tr>
                                         }
@@ -99,7 +100,7 @@
         $('#dtBasicExample').DataTable();
     });
     function updateUser(user_id) {
-        location.href = './Admin/UpdateUsers?uid=' + user_id;
+        location.href = './UpdateUsers?uid=' + user_id;
     }
     function deleteUser(user_id, e) {
         swal({

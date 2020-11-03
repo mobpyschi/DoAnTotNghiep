@@ -40,16 +40,18 @@
 <body class="home-2">
     <div class="background-blurry"></div>
     <div class="box-note">
-        <div class="box-header">
-            <h3><i class="fas fa-exclamation-triangle"></i>Chú ý</h3>
-            <a class="btn-close"><i class="far fa-times-circle" style="padding: 8px; float: right;"></i></a>
+        <div class="box-form">
+            <div class="box-header">
+                <h4><i class="fas fa-exclamation-triangle"></i>Chú ý</h4>
+                <a class="btn-close"><i class="far fa-times-circle" style=" padding: 6px; float: right; font-size: 2rem;color:white;cursor:pointer"></i></a>
 
-        </div>
-        <div class="box-content">
-            <p>Bạn phải đăng nhập để thanh toán và đặt hàng.</p>
-        </div>
-        <div class="box-footer">
-            <a class="btn-login" href="~/Customer/Login">Đăng nhập</a>
+            </div>
+            <div class="box-content">
+                <p>Bạn phải đăng nhập để thanh toán hoặc đặt hàng.</p>
+            </div>
+            <div class="box-footer">
+                <a class="btn-login" href="~/Customer/Login">Đăng nhập</a>
+            </div>
         </div>
     </div>
     <div>
@@ -102,7 +104,7 @@
                                         @{Html.RenderAction("_PartialMenuSachTrongNuoc", "Home");}
                                         @{Html.RenderAction("_PartialMenuSachNuocNgoai", "Home");}
                                         <li>
-                                            <a href="product-details.html">SALES OFF</a>
+                                            <a href="#">SALES OFF</a>
                                         </li>
                                         <li>
                                             <a href="#">TIN TỨC</a>
@@ -114,9 +116,9 @@
                                             <a href="#">Khác<i class="fa fa-angle-down"></i></a>
                                             <div class="sub-menu sub-menu-2">
                                                 <ul>
-                                                    <li><a href="shop.html">Thông tin shop</a></li>
-                                                    <li><a href="shop.html">Nhà cung cấp</a></li>
-                                                    <li><a href="shop.html">Tác giả</a></li>
+                                                    <li><a href="#">Thông tin shop</a></li>
+                                                    <li><a href="#">Nhà cung cấp</a></li>
+                                                    <li><a href="#">Tác giả</a></li>
                                                 </ul>
                                             </div>
                                         </li>
@@ -162,7 +164,7 @@
                                 <a href="#"><img src="~/img/banner/1.png" alt="banner" /></a>
                             </div>
                             <div class="banner-text">
-                                <h4>Free shipping</h4>
+                                <h4>Miễn phí vẫn chuyển</h4>
                                 <p>Cho đơn hàng trên 150.000 vnd</p>
                             </div>
                         </div>
@@ -184,7 +186,7 @@
                                 <a href="#"><img src="~/img/banner/3.png" alt="banner" /></a>
                             </div>
                             <div class="banner-text">
-                                <h4>Thanh toán tiền mặt</h4>
+                                <h4>Thanh toán tiền mặt hoặc trực tuyến</h4>
                                 <p>Thanh toán khi nhận hàng</p>
                             </div>
                         </div>

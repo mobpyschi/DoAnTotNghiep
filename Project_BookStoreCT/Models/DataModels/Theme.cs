@@ -22,7 +22,6 @@ namespace Project_BookStoreCT.Models.DataModels
     
         public int Theme_ID { get; set; }
         public string themeName { get; set; }
-        public string themeNameForeign { get; set; }
         public string description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

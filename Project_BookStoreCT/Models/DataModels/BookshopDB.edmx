@@ -63,6 +63,7 @@
           <Property Name="categoryName" Type="nvarchar" MaxLength="150" />
           <Property Name="categoryNameForeign" Type="nvarchar" MaxLength="150" />
           <Property Name="theme_id" Type="int" />
+          <Property Name="ThemeForeign_id" Type="int" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -124,10 +125,17 @@
           <Key>
             <PropertyRef Name="Theme_ID" />
           </Key>
-          <Property Name="Theme_ID" Type="int" Nullable="false" />
+          <Property Name="Theme_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="themeName" Type="nvarchar" MaxLength="50" />
-          <Property Name="themeNameForeign" Type="nvarchar" MaxLength="50" />
           <Property Name="description" Type="ntext" />
+        </EntityType>
+        <EntityType Name="ThemeForeign">
+          <Key>
+            <PropertyRef Name="ThemeForeign_ID" />
+          </Key>
+          <Property Name="ThemeForeign_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThemeForeignName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Decription" Type="ntext" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -216,6 +224,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Category_ThemeForeign">
+          <End Role="ThemeForeign" Type="Self.ThemeForeign" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThemeForeign">
+              <PropertyRef Name="ThemeForeign_ID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="ThemeForeign_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Customer_role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -277,6 +297,7 @@
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Theme" EntityType="Self.Theme" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThemeForeign" EntityType="Self.ThemeForeign" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Authors_Books_Author" Association="Self.FK_Authors_Books_Author">
             <End Role="Author" EntitySet="Author" />
@@ -300,6 +321,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Category_Theme" Association="Self.FK_Category_Theme">
             <End Role="Theme" EntitySet="Theme" />
+            <End Role="Category" EntitySet="Category" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_ThemeForeign" Association="Self.FK_Category_ThemeForeign">
+            <End Role="ThemeForeign" EntitySet="ThemeForeign" />
             <End Role="Category" EntitySet="Category" />
           </AssociationSet>
           <AssociationSet Name="FK_Customer_role" Association="Self.FK_Customer_role">
@@ -391,8 +416,10 @@
           <Property Name="categoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="categoryNameForeign" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="theme_id" Type="Int32" />
+          <Property Name="ThemeForeign_id" Type="Int32" />
           <NavigationProperty Name="Books" Relationship="Self.FK_Book_category" FromRole="Category" ToRole="Book" />
           <NavigationProperty Name="Theme" Relationship="Self.FK_Category_Theme" FromRole="Category" ToRole="Theme" />
+          <NavigationProperty Name="ThemeForeign" Relationship="Self.FK_Category_ThemeForeign" FromRole="Category" ToRole="ThemeForeign" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -461,11 +488,19 @@
           <Key>
             <PropertyRef Name="Theme_ID" />
           </Key>
-          <Property Name="Theme_ID" Type="Int32" Nullable="false" />
+          <Property Name="Theme_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="themeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="themeNameForeign" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Categories" Relationship="Self.FK_Category_Theme" FromRole="Theme" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="ThemeForeign">
+          <Key>
+            <PropertyRef Name="ThemeForeign_ID" />
+          </Key>
+          <Property Name="ThemeForeign_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThemeForeignName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Category_ThemeForeign" FromRole="ThemeForeign" ToRole="Category" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -579,6 +614,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Category_ThemeForeign">
+          <End Role="ThemeForeign" Type="Self.ThemeForeign" Multiplicity="0..1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThemeForeign">
+              <PropertyRef Name="ThemeForeign_ID" />
+            </Principal>
+            <Dependent Role="Category">
+              <PropertyRef Name="ThemeForeign_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Customer_role">
           <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
@@ -616,6 +663,7 @@
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
           <EntitySet Name="Themes" EntityType="Self.Theme" />
+          <EntitySet Name="ThemeForeigns" EntityType="Self.ThemeForeign" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Authors_Books_Author" Association="Self.FK_Authors_Books_Author">
             <End Role="Author" EntitySet="Authors" />
@@ -647,6 +695,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Category_Theme" Association="Self.FK_Category_Theme">
             <End Role="Theme" EntitySet="Themes" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Category_ThemeForeign" Association="Self.FK_Category_ThemeForeign">
+            <End Role="ThemeForeign" EntitySet="ThemeForeigns" />
             <End Role="Category" EntitySet="Categories" />
           </AssociationSet>
           <AssociationSet Name="FK_Customer_role" Association="Self.FK_Customer_role">
@@ -724,6 +776,7 @@
                 <ScalarProperty Name="categoryName" ColumnName="categoryName" />
                 <ScalarProperty Name="categoryNameForeign" ColumnName="categoryNameForeign" />
                 <ScalarProperty Name="theme_id" ColumnName="theme_id" />
+                <ScalarProperty Name="ThemeForeign_id" ColumnName="ThemeForeign_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -793,8 +846,16 @@
               <MappingFragment StoreEntitySet="Theme">
                 <ScalarProperty Name="Theme_ID" ColumnName="Theme_ID" />
                 <ScalarProperty Name="themeName" ColumnName="themeName" />
-                <ScalarProperty Name="themeNameForeign" ColumnName="themeNameForeign" />
                 <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThemeForeigns">
+            <EntityTypeMapping TypeName="BookshopModel.ThemeForeign">
+              <MappingFragment StoreEntitySet="ThemeForeign">
+                <ScalarProperty Name="ThemeForeign_ID" ColumnName="ThemeForeign_ID" />
+                <ScalarProperty Name="ThemeForeignName" ColumnName="ThemeForeignName" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
