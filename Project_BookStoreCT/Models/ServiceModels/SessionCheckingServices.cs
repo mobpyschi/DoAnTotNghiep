@@ -12,12 +12,13 @@ namespace Project_BookStoreCT.Models.ServiceModels
         public static int ? userID { get; set; }
         public static string userName { get; set; }
         public static string avatar { get; set; }
-        public static void Session(int userID, string avatar, string username)
+        public static string password { get; set; }
+        public static void Session(int userID, string avatar, string username, string password)
         {
             SessionCheckingServices.userID = userID;
             SessionCheckingServices.avatar = avatar;
             SessionCheckingServices.userName = username;
-
+            SessionCheckingServices.password = password;
         }
     }
      

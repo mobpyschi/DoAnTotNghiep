@@ -62,7 +62,7 @@
                                     </thead>
                                     <tbody>
                                         @foreach (CusIndex_ViewModels cus in Model)
-                                        {
+                                            {
                                             <tr id="row_@cus.cus_id">
                                                 <td>@cus.cusName</td>
                                                 <td>@cus.cusAddress</td>
@@ -71,20 +71,20 @@
                                                 @if (cus.sex == true)
                                                 {
                                                     <td class="text-center">Nam</td>
- }
+                                                }
                                                 else
                                                 {
                                                     <td class="text-center">Nữ</td>
-}
+                                                }
                                                 <td><img style="height:50px;width:50px;" src="~/img/avatar/@cus.avatar" /></td>
                                                 <td>@cus.role</td>
                                                 <td>
                                                     <input type="button" onclick="updateUser(@cus.cus_id,this)" class="btn btn-success" value="Sửa" />
                                                     <input type="button" onclick="deleteUser(@cus.cus_id,this)" class="btn btn-danger" value="Xóa" />
-                                                    <input type="button" onclick="resetPass(@cus.cus_id,this)" class="btn btn-primary" value="Reset Password" />
+                                                    <input type="button" onclick="resetPass(@cus.cus_id,this)" class="btn btn-primary" value="Đặt lại mật khẩu" />
                                                 </td>
                                             </tr>
-}
+                                            }
                                     </tbody>
                                 </table>
                             </div>

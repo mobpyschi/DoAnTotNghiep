@@ -519,6 +519,7 @@
         }
         sidemenuDropdown();
     }
+
     $(document).ready(function () {
         $('.btn-open').click(function (event) {
             $('.box-note').addClass('box-open');

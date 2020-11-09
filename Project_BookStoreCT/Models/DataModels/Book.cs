@@ -25,11 +25,11 @@ namespace Project_BookStoreCT.Models.DataModels
         public string isbn { get; set; }
         public string bookName { get; set; }
         public string description { get; set; }
-        public Nullable<int> price { get; set; }
+        public Nullable<double> price { get; set; }
         public string image { get; set; }
         public Nullable<int> quantityExists { get; set; }
         public Nullable<int> sellNumber { get; set; }
-        public Nullable<int> saleOffPrice { get; set; }
+        public Nullable<double> saleOffPrice { get; set; }
         public Nullable<bool> statusSaleOff { get; set; }
         public Nullable<int> category_id { get; set; }
         public Nullable<int> language_id { get; set; }

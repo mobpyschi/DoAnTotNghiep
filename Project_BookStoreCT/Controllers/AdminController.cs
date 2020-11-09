@@ -36,7 +36,7 @@ namespace Project_BookStoreCT.Controllers
         public ActionResult Login(LoginPost lgPost)
         {
             LoginServices loginServices = new LoginServices();
-            if (loginServices.CheckLogin(lgPost.email, Encode.CreateMD5( lgPost.password), lgPost.rememberMe) == true)
+            if (loginServices.CheckLogin(lgPost.email, Encode.CreateMD5( lgPost.password) ,lgPost.rememberMe) == true)
             {
                 return Json(new { _mess = 1 });
             }
@@ -68,7 +68,7 @@ namespace Project_BookStoreCT.Controllers
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
                 var getUserIDFromCookie = int.Parse(ticket.Name);
                 var getUser = (from user in db.Users where user.User_ID == getUserIDFromCookie select user).FirstOrDefault();
-                SessionCheckingServices.Session(getUser.User_ID, getUser.avatar,getUser.userName);
+                SessionCheckingServices.Session(getUser.User_ID, getUser.avatar,getUser.userName,getUser.password);
                 return PartialView("_PartialUserInformation");
             }
             return PartialView("_PartialUserInformation");
@@ -95,7 +95,7 @@ namespace Project_BookStoreCT.Controllers
                 FormsAuthenticationTicket ticket = FormsAuthentication.Decrypt(authCookie.Value);
                 var getUserIDFromCookie = int.Parse(ticket.Name);
                 var getUser = (from user in db.Users where user.User_ID == getUserIDFromCookie select user).FirstOrDefault();
-                SessionCheckingServices.Session(getUser.User_ID, getUser.avatar,getUser.userName);
+                SessionCheckingServices.Session(getUser.User_ID, getUser.avatar,getUser.userName,getUser.password);
                 return View();
             }
         }
@@ -124,8 +124,44 @@ namespace Project_BookStoreCT.Controllers
                 return View(users);
             }
         }
+        [HttpGet]
+        public ActionResult ChangePass(int? uid)
+        {
+            using (DataContext db = new DataContext())
+            {
+                TempData["uid"] = uid;
+                if (uid != null)
+                {
+                    ViewBag.GetInfoUser = (from c in db.Users where c.User_ID == uid select c).ToList();
+                    return View();
+                }
+                else
+                {
+                    return PartialView("_Partial404NotFoundAdmin");
+                }
+            }
+        }
+        [HttpPost]
+        public ActionResult ChangePass(changePass user)
+        {
+            using (DataContext db = new DataContext())
+            {
+                User c = db.Users.Where(x => x.User_ID == user.userid).FirstOrDefault();
+                if (Encode.CreateMD5(user.old_pass) == c.password)
+                {
+                    c.password = Encode.CreateMD5(user.password);
+                    db.SaveChanges();
+                    return Json(new { mes_check = 1 });
+                }
+                else
+                {
+                    return Json(new { mes_check = 0 });
+                }
 
-        public ActionResult CustomersIndex()
+
+            }
+        }
+            public ActionResult CustomersIndex()
         {
             using (DataContext db = new DataContext())
             {
@@ -236,7 +272,7 @@ namespace Project_BookStoreCT.Controllers
                 }
                 else
                 {
-                    return PartialView("_Partial404NotFound");
+                    return PartialView("_Partial404NotFoundAdmin");
                 }
             }
         }
@@ -288,7 +324,7 @@ namespace Project_BookStoreCT.Controllers
                 }
                 else
                 {
-                    return PartialView("_Partial404NotFound");
+                    return PartialView("_Partial404NotFoundAdmin");
                 }
             }
         }
@@ -386,7 +422,7 @@ namespace Project_BookStoreCT.Controllers
                 }
                 else
                 {
-                    return PartialView("_Partial404NotFound");
+                    return PartialView("_Partial404NotFoundAdmin");
                 }
             }    
         }
@@ -468,7 +504,7 @@ namespace Project_BookStoreCT.Controllers
             }
             else
             {
-                return PartialView("_Partial404NotFound");
+                return PartialView("_Partial404NotFoundAdmin");
             }
         }
         [HttpPost, ValidateInput(false)]
@@ -555,7 +591,7 @@ namespace Project_BookStoreCT.Controllers
                 }
                 else
                 {
-                    return PartialView("_Partial404NotFound");
+                    return PartialView("_Partial404NotFoundAdmin");
                 }
             }
         }
@@ -650,7 +686,7 @@ namespace Project_BookStoreCT.Controllers
                 }
                 else
                 {
-                    return PartialView("_Partial404NotFound");
+                    return PartialView("_Partial404NotFoundAdmin");
                 }
             }
         }
@@ -739,7 +775,7 @@ namespace Project_BookStoreCT.Controllers
                 }
                 else
                 {
-                    return PartialView("_Partial404NotFound");
+                    return PartialView("_Partial404NotFoundAdmin");
                 }
             }
         }

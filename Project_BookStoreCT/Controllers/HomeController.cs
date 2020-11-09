@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations.Model;
 using System.Data.Linq;
 using System.Linq;
 using System.Web;
@@ -85,7 +86,7 @@ namespace Project_BookStoreCT.Controllers
                 }
             }
         }
-        public void AddToCart(int id, string bookname, int? price, string image)
+        public void AddToCart(int id, string bookname, double? price, string image)
         { 
             if (Session["Cart"] == null)
             {
@@ -182,7 +183,133 @@ namespace Project_BookStoreCT.Controllers
             Session["ThanhTien"] = total;
             return View("ViewCart");
         }
-        public ActionResult PaymentWithPaypal(FormCollection f, string Cancel = null)
+
+        //Work with paypal payment
+        private Payment payment;
+
+        //Create payment wit APIcontext
+        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
+        {
+            var listItem = new ItemList() { items = new List<Item>() };
+            List < Cart_ViewModels > listCarts = (List<Cart_ViewModels>)Session["Cart"];
+            foreach( var cart in listCarts)
+            {
+                listItem.items.Add(new Item()
+                {
+                    name = cart.bookname,
+                    currency = "USD",
+                    price = cart.price.ToString(),
+                    quantity = cart.number.ToString(),
+                    sku = "sku"
+                }) ;
+            }
+            var payer = new Payer() { payment_method = "paypal" };
+            //Cofiguration RedirectUrls
+            var redirUrl = new RedirectUrls()
+            {
+                cancel_url = redirectUrl,
+                return_url = redirectUrl
+            };
+
+            //create details
+
+            var details = new Details()
+            {
+                tax = "0",
+                shipping = "0",
+                subtotal = Session["ThanhTien"].ToString()
+            };
+
+            //Create amount object 
+            var amount = new Amount()
+            {
+                currency = "USD",
+                total = (Convert.ToDouble(details.tax) + Convert.ToDouble(details.shipping) + Convert.ToDouble(details.subtotal)).ToString(),
+                details = details
+            };
+
+            //create transaction
+            var transactionList = new List<Transaction>();
+            transactionList.Add(new Transaction()
+            {
+                description = "Test transaction decription",
+                invoice_number = Convert.ToString((new Random()).Next(100000)),
+                amount = amount,
+                item_list = listItem
+            });
+            payment = new Payment()
+            {
+                intent = "sale",
+                payer = payer,
+                transactions = transactionList,
+                redirect_urls = redirUrl
+            };
+            return payment.Create(apiContext);
+        }
+
+        // CREATE execute Payment method
+        private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
+        {
+            var paymentExecution = new PaymentExecution()
+            {
+                payer_id = payerId
+            };
+            payment = new Payment() { id = paymentId };
+            return payment.Execute(apiContext, paymentExecution);
+        }
+
+        //create Payment Whit Paypal method
+        public ActionResult PaymentWithPaypal()
+        {
+            //getying context from the paypal bases on clientId and clientSecret
+            APIContext apiContext = PaypalConfiguration.GetAPIContext();
+            try
+            {
+                string payerId = Request.Params["PayerID"];
+                if (string.IsNullOrEmpty(payerId))
+                {
+                    string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + "/Home/PaymentWithPaypal?";
+                    var guid = Convert.ToString((new Random()).Next(100000));
+                    var createPayment = CreatePayment(apiContext, baseUrl + "guid=" + guid);
+
+                    //get links returned from paypal response to create cal function
+                    var links = createPayment.links.GetEnumerator();
+                    string paypalRedirectUrl = null;
+
+                    while (links.MoveNext())
+                    {
+                        Links link = links.Current;
+                        if(link.rel.ToLower().Trim().Equals("approval_url"))
+                        {
+                            paypalRedirectUrl = link.href;
+                        }
+                    }
+                    Session.Add(guid, createPayment.id);
+                    return Redirect(paypalRedirectUrl);
+
+                }
+                else 
+                {
+                    var guid = Request.Params["guid"];
+                    var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
+                    if(executedPayment.state.ToLower() != "approved")
+                    {
+                        
+                        return View("FailureView");
+                    }
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                PaypalLogger.Log("Error: " + ex.Message);
+                return View("FailureView");
+            }
+            return View("SuccessView");
+        }
+
+
+       /* public ActionResult PaymentWithPaypal(FormCollection f, string Cancel = null)
         {
             //getting the apiContext  
             APIContext apiContext = PaypalConfiguration.GetAPIContext();
@@ -345,20 +472,39 @@ namespace Project_BookStoreCT.Controllers
             };
             // Create a payment using a APIContext  
             return this.payment.Create(apiContext);
-        }
-        public ActionResult FailureView()
-        {
-            return View();
-        }
-        public ActionResult SuccessView()
-        {
-            return View();
-        }
+        }*/
+
         public ActionResult Bill()
         {
-            return View();
+            using (DataContext db = new DataContext())
+            {
+                var cus = (from c in db.Customers
+                           join r in db.Roles on c.role equals r.Role_ID
+                           where c.Customer_ID == SessionCheckingCustomes.customerID
+                           select new
+                           {
+                               c.Customer_ID,
+                               c.customerName,
+                               c.customerAddress,
+                               c.customerEmail,
+                               c.customerPhone
+                           }).ToList();
+                List<CusIndex_ViewModels> customer = new List<CusIndex_ViewModels>();
+                foreach (var c in cus)
+                {
+                    CusIndex_ViewModels ci = new CusIndex_ViewModels();
+                    ci.cus_id = c.Customer_ID;
+                    ci.cusName = c.customerName;
+                    ci.cusAddress = c.customerAddress;
+                    ci.cusEmail = c.customerEmail;
+                    ci.cusPhone = c.customerPhone;
+                    customer.Add(ci);
+                }
+                return View(customer);
+            }
         }
-        public ActionResult BillPayment(FormCollection f)
+           
+        /*public ActionResult BillPayment(FormCollection f)
         {
             using (DataContext db = new DataContext()) 
             {
@@ -385,7 +531,9 @@ namespace Project_BookStoreCT.Controllers
                 Session["Cart"] = null;
             }
             return View("SuccessView");
-        }
+        }*/
+
+
         [HttpGet]
         public ActionResult BooksInCategory(int ? cid)
         {

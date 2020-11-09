@@ -13,7 +13,7 @@ namespace Project_BookStoreCT.Models.ViewModels
         public int number { get; set; }
         [MaxLength(3)]
         public double total { get; set; }
-        public int ? price { get; set; }
+        public double ? price { get; set; }
         public string image { get; set; }
 
     }

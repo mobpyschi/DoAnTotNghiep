@@ -44,11 +44,11 @@
           <Property Name="isbn" Type="varchar(max)" />
           <Property Name="bookName" Type="nvarchar" MaxLength="200" />
           <Property Name="description" Type="nvarchar(max)" />
-          <Property Name="price" Type="int" />
+          <Property Name="price" Type="float" />
           <Property Name="image" Type="varchar" MaxLength="200" />
           <Property Name="quantityExists" Type="int" />
           <Property Name="sellNumber" Type="int" />
-          <Property Name="saleOffPrice" Type="int" />
+          <Property Name="saleOffPrice" Type="float" />
           <Property Name="statusSaleOff" Type="bit" />
           <Property Name="category_id" Type="int" />
           <Property Name="language_id" Type="int" />
@@ -59,7 +59,7 @@
           <Key>
             <PropertyRef Name="Category_ID" />
           </Key>
-          <Property Name="Category_ID" Type="int" Nullable="false" />
+          <Property Name="Category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="categoryName" Type="nvarchar" MaxLength="150" />
           <Property Name="categoryNameForeign" Type="nvarchar" MaxLength="150" />
           <Property Name="theme_id" Type="int" />
@@ -392,11 +392,11 @@
           <Property Name="isbn" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="bookName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="price" Type="Int32" />
+          <Property Name="price" Type="Double" />
           <Property Name="image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="quantityExists" Type="Int32" />
           <Property Name="sellNumber" Type="Int32" />
-          <Property Name="saleOffPrice" Type="Int32" />
+          <Property Name="saleOffPrice" Type="Double" />
           <Property Name="statusSaleOff" Type="Boolean" />
           <Property Name="category_id" Type="Int32" />
           <Property Name="language_id" Type="Int32" />
@@ -412,7 +412,7 @@
           <Key>
             <PropertyRef Name="Category_ID" />
           </Key>
-          <Property Name="Category_ID" Type="Int32" Nullable="false" />
+          <Property Name="Category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="categoryName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="categoryNameForeign" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="theme_id" Type="Int32" />

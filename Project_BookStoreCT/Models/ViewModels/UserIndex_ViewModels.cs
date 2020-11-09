@@ -15,5 +15,6 @@ namespace Project_BookStoreCT.Models.ViewModels
         public string address { get; set; }
         public string role { get; set; }
         public bool ? sex { get; set; }
+        
     }
 }
