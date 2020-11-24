@@ -49,13 +49,22 @@ else
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     @if (Session["Cart"] != null)
                                     {
-                                        <div class="buttons-cart mb-30">
-                                            <ul>
-                                                <li><input type="submit" formaction="~/Home/BillPayment" name="Bill" value="Đặt hàng" /> </li>
-                                                <li><input type="submit" formaction="~/Home/PaymentWithPaypal" value="Thanh toán Paypal" /> </li>
-                                                <li><a href="">Cập nhập đơn hàng</a></li>
-                                            </ul>
-                                        </div>}
+                                            <div class="method-notice col-12 mb--20" style="margin-left:1rem;">
+                                                <label style="width:100%">Phương thức thanh toán *</label>
+                                                <label style="width:100%;margin-bottom:2.2rem">
+                                                    <a href="~/Home/SuccessView"><input type="button" class="btn" value="Thanh toán COD" /></a>
+                                                    
+                                                </label>
+                                                <label>
+                                                    <a href="~/Home/PaymentWithPaypal" ><img src="~/img/logo/paypal.png" style="width:90px;height:50px;display:inline-block;position:relative;top:-11px" /></a>
+                                                </label>
+                                                <label>
+                                                    <input type="button" class="btn" value="" />
+
+                                                    <img src="~/img/logo/momo.png" style="width:70px;height:50px;display:inline-block;position:relative;top:-11px" />
+                                                </label>
+                                            </div>
+                                      }
                                 </div>
                             </div>
                          }
@@ -69,8 +78,8 @@ else
                             <table>
                                 <thead>
                                     <tr>
-                                        <th class="product-name">Sản phẩm</th>
-                                        <th class="product-total">Tổng giá</th>
+                                        <th class="product-name" style="text-align:left;font-size:2rem"><strong>Sản phẩm</strong></th>
+                                        <th class="product-total" style="text-align:right">Tổng giá</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -78,31 +87,57 @@ else
                                     {
                                         foreach (Cart_ViewModels cart in (List<Cart_ViewModels>)Session["Cart"])
                                         {
-                                            <tr class="cart_item">
-                                                <td class="product-name">
+                                            <tr class="cart_item" >
+                                                <td class="product-name" style="color:#f1741b;text-align:left">
                                                     @cart.bookname <strong class="product-quantity"> × @cart.number</strong>
                                                 </td>
-                                                <td class="product-total">
-                                                    <span class="amount">@cart.total$</span>
+                                                <td class="product-total" style="text-align:right">
+                                                    <span class="amount">@String.Format("{0:n0}", cart.total) VND</span>
                                                 </td>
                                             </tr>
                                         }
                                      }
                                 </tbody>
                                 <tfoot>
-                                    <tr class="order-total">
-                                        <th>THÀNH TIỀN</th>
-                                        <td>
-                                            @if (Session["ThanhTien"] != null)
-                                            {
-                                            <strong><span class="amount">@Session["ThanhTien"]$</span></strong> 
-                                            }
-                                            else
-                                            {
-                                            <strong><span class="amount">0$</span></strong>
-                                            }
-                                        </td>
-                                    </tr>
+                                    @if (Session["ThanhTien"] != null)
+                                    {
+                                        <tr >
+
+                                            <th style="text-align:left">Tạm tính:</th>
+                                            <td style="text-align:right">@Session["ThanhTien"] VND</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="text-align:left">Tiền shipping:</th>
+                                            <td style="text-align:right">0</td>
+                                        </tr>
+                                        <tr class="order-total" style="border-top: 3px solid #62ab00;">
+                                            <th style="text-align:left">Tổng tiền:</th>
+                                            <td style="text-align:right"><strong><span class="amount">@Session["ThanhTien"] VND</span></strong></td>
+                                        </tr>
+
+                                    }
+                                    else
+                                    {
+                                        
+                                            <tr class="order-total">
+
+                                            <th>Tạm tính:</th>
+                                            <td>0 VND</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tiền shipping:</th>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tổng tiền:</th>
+                                            <td><strong><span class="amount">0 VND</span></strong></td>
+                                        </tr>
+
+                                        
+                                    
+                                    }
+
+                                
                                 </tfoot>
                             </table>
                         </div>

@@ -6433,3 +6433,111 @@ p.lost-password a:hover {
     opacity: 1;
     visibility: visible;
 }
+
+/*Notied check*/
+.method-notice {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1em 1em 0em 1.5em;
+    margin: 0 0 15px;
+    position: relative;
+    background-color: #f7f6f7;
+    color: #333;
+    border-top: 3px solid #62ab00;
+    list-style: none outside;
+    word-wrap: break-word;
+}
+
+    .method-notice label {
+        display: flex;
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+/*======================================*/
+/*Check phương thức thanh toán*/
+
+
+@keyframes click-wave {
+    0% {
+        height: 45px;
+        width: 0px;
+        opacity: 0.55;
+        position: relative;
+    }
+
+    100% {
+        height: 200px;
+        width: 200px;
+        margin-left: -90px;
+        margin-top: -90px;
+        opacity: 0;
+    }
+}
+
+.option-input-test {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: -10px;
+    right: 0;
+    bottom: 0;
+    left: -10px;
+    width: 0px !important;
+    height: 45px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8 !important;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000000;
+}
+
+    .option-input-test:hover {
+        background: #9faab7;
+    }
+
+    .option-input-test:checked {
+        background: #40e0d0;
+    }
+
+        .option-input-test:checked::before {
+            width: 0px !important;
+            height: 45px;
+            position: absolute;
+            content: '✔';
+            display: inline-block;
+            font-size: 33.66667px;
+            color: #62ab00;
+            text-align: center;
+            line-height: 25px;
+            left: 7px;
+        }
+
+        .option-input-test:checked::after {
+            -webkit-animation: click-wave 0.65s;
+            -moz-animation: click-wave 0.65s;
+            animation: click-wave 0.65s;
+            background: #40e0d0;
+            content: '';
+            display: block;
+            position: relative;
+            z-index: 1000000;
+        }
+
+    .option-input-test.radio {
+        border-radius: 50%;
+    }
+
+        .option-input-test.radio::after {
+            border-radius: 50%;
+        }

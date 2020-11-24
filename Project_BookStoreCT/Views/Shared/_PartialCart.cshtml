@@ -1,18 +1,20 @@
 ﻿@using Project_BookStoreCT.Models.ViewModels;
 @using Project_BookStoreCT.Models.ServiceModels;
 @{ double total = 0;
-                int count = 0;
-                if (Session["Cart"] != null)
-                {
-                    //var item = (List<Cart_ViewModels>)Session["Cart"];
-                    //count = item.Count;
-                    foreach (Cart_ViewModels cart in (List<Cart_ViewModels>)Session["Cart"])
-                    {
-                        total = total + cart.total;
-                        count = count + cart.number;
-                    }
-                    Session["ThanhTien"] = total;
-                } }
+    int count = 0;
+    if (Session["Cart"] != null)
+    {
+        //var item = (List<Cart_ViewModels>)Session["Cart"];
+        //count = item.Count;
+        foreach (Cart_ViewModels cart in (List<Cart_ViewModels>)Session["Cart"])
+        {
+            total = total + cart.total;
+            count = count + cart.number;
+        }
+        Session["ThanhTien"] =  total;
+        Session["ThanhToanPP"] = Math.Round(total / 23000,2);
+    }
+    }
 @if (Session["Cart"] != null)
 {
 <div class="my-cart">

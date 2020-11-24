@@ -100,6 +100,7 @@ namespace Project_BookStoreCT.Controllers
                 cart.total = Convert.ToDouble(cart.price * cart.number);
                 carts.Add(cart);
                 Session["cart"] = carts;
+                Session["ThanhTien"] = cart.total;
             }
             else
             {
@@ -128,7 +129,8 @@ namespace Project_BookStoreCT.Controllers
                     carts[vitri].number++;
                     carts[vitri].total = Convert.ToDouble(carts[vitri].number * carts[vitri].price);
                 }
-                Session["Cart"] = carts;              
+                Session["Cart"] = carts;
+                Session["ThanhTien"] = carts[vitri].total;
             }
         }
         [HttpPost]
@@ -175,14 +177,18 @@ namespace Project_BookStoreCT.Controllers
                 }
             }
             Session["Cart"] = carts;
+            
             double total = 0;
-            foreach(var item in (List<Cart_ViewModels>)Session["Cart"])
+            foreach (var item in (List<Cart_ViewModels>)Session["Cart"])
             {
-                total = total + item.total;
+                
+                total = total + item.total ;
             }
-            Session["ThanhTien"] = total;
+            Session["ThanhTien"] =total;
             return View("ViewCart");
         }
+
+        
 
         //Work with paypal payment
         private Payment payment;
@@ -212,14 +218,15 @@ namespace Project_BookStoreCT.Controllers
             };
 
             //create details
-
+            
             var details = new Details()
             {
                 tax = "0",
                 shipping = "0",
-                subtotal = Session["ThanhTien"].ToString()
+                subtotal = Session["ThanhToanPP"].ToString()
             };
 
+            
             //Create amount object 
             var amount = new Amount()
             {
@@ -303,176 +310,13 @@ namespace Project_BookStoreCT.Controllers
             catch (Exception ex)
             {
                 PaypalLogger.Log("Error: " + ex.Message);
+                Session["Cart"] = null;
                 return View("FailureView");
             }
+            Session["Cart"] = null;
             return View("SuccessView");
         }
 
-
-       /* public ActionResult PaymentWithPaypal(FormCollection f, string Cancel = null)
-        {
-            //getting the apiContext  
-            APIContext apiContext = PaypalConfiguration.GetAPIContext();
-            try
-            {
-                //A resource representing a Payer that funds a payment Payment Method as paypal  
-                //Payer Id will be returned when payment proceeds or click to pay  
-                string payerId = Request.Params["PayerID"];
-                if (string.IsNullOrEmpty(payerId))
-                {      
-                    //this section will be executed first because PayerID doesn't exist  
-                    //it is returned by the create function call of the payment class  
-                    // Creating a payment  
-                    // baseURL is the url on which paypal sendsback the data.  
-                    string baseURI = Request.Url.Scheme + "://" + Request.Url.Authority + "/Home/PaymentWithPayPal?";
-                    //here we are generating guid for storing the paymentID received in session  
-                    //which will be used in the payment execution  
-                    var guid = Convert.ToString((new Random()).Next(100000));
-                    //CreatePayment function gives us the payment approval url  
-                    //on which payer is redirected for paypal account payment  
-                    var createdPayment = this.CreatePayment(apiContext, baseURI + "guid=" + guid);
-                    //get links returned from paypal in response to Create function call  
-                    var links = createdPayment.links.GetEnumerator();
-                    string paypalRedirectUrl = null;
-                    while (links.MoveNext())
-                    {
-                        Links lnk = links.Current;
-                        if (lnk.rel.ToLower().Trim().Equals("approval_url"))
-                        {
-                            //saving the payapalredirect URL to which user will be redirected for payment  
-                            paypalRedirectUrl = lnk.href;
-                        }
-                    }
-                    // saving the paymentID in the key guid  
-                    Session.Add(guid, createdPayment.id);
-                    using (DataContext db = new DataContext())
-                    {
-                        Bill bill = new Bill();
-                        bill.customerName = f["txtKhachHang"];
-                        bill.phoneNumber = f["txtSoDienThoai"];
-                        bill.date_set = DateTime.Now;
-                        bill.customerAddress = f["txtDiaChi"];
-                        bill.total = Convert.ToInt32(Session["ThanhTien"]);
-                        bill.isPayment = true;
-                        bill.isDelivered = false;
-                        db.Bills.Add(bill);
-                        db.SaveChanges();
-                        var bill_id_max = db.Bills.Max(x => x.Bill_ID);
-                        foreach (var item in (List<Cart_ViewModels>)Session["Cart"])
-                        {
-                            DetailBill detailBill = new DetailBill();
-                            detailBill.Bill_ID = bill_id_max;
-                            detailBill.Book_ID = item.book_id;
-                            detailBill.quantity = item.number;
-                            db.DetailBills.Add(detailBill);
-                            db.SaveChanges();
-                        }
-                        Session["Cart"] = null;
-                    }
-                    return Redirect(paypalRedirectUrl);
-                }
-                else
-                {
-                    // This function exectues after receving all parameters for the payment  
-                    var guid = Request.Params["guid"];
-                    var executedPayment = ExecutePayment(apiContext, payerId, Session[guid] as string);
-                    //If executed payment failed then we will show payment failure message to user  
-                    if (executedPayment.state.ToLower() != "approved")
-                    {
-                        return View("FailureView");
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                return View("FailureView");
-            }
-            //on successful payment, show success page to user.  
-            return View("SuccessView");
-        }
-        private PayPal.Api.Payment payment;
-        private Payment ExecutePayment(APIContext apiContext, string payerId, string paymentId)
-        {
-            var paymentExecution = new PaymentExecution()
-            {
-                payer_id = payerId
-            };
-            this.payment = new Payment()
-            {
-                id = paymentId
-            };
-            return this.payment.Execute(apiContext, paymentExecution);
-        }
-
-        //Tạo thanh toán
-        private Payment CreatePayment(APIContext apiContext, string redirectUrl)
-        {
-            //create itemlist and add item objects to it  
-            var itemList = new ItemList()
-            {
-                items = new List<Item>()
-            };
-            //Adding Item Details like name, currency, price etc  
-            foreach(var s in (List<Cart_ViewModels>)Session["Cart"])
-            {
-                itemList.items.Add(new Item()
-                {
-                    name = s.bookname,
-                    currency = "USD",
-                    price = s.price.ToString(),
-                    quantity = s.number.ToString(),
-                    sku = "sku"
-                });
-            }
-            var payer = new Payer()
-            {
-                payment_method = "paypal"
-            };
-            // Configure Redirect Urls here with RedirectUrls object  
-            var redirUrls = new RedirectUrls()
-            {
-                cancel_url = redirectUrl + "&Cancel=true",
-                return_url = redirectUrl
-            };
-            // Adding Tax, shipping and Subtotal details  
-            var details = new Details()
-            {
-                tax = "0",
-                shipping = "0",
-                subtotal = Session["ThanhTien"].ToString()
-            };
-            //Final amount with details  
-            var amount = new Amount()
-            {
-                currency = "USD",
-                total = Session["ThanhTien"].ToString(), // Total must be equal to sum of tax, shipping and subtotal.  
-                details = details
-            };
-            var transactionList = new List<Transaction>();
-            // Adding description about the transaction  
-
-            //string ramdomTrans = new Guid().ToString();
-            char[] chars = "$%#@!*abcdefghijklmnopqrstuvwxyz1234567890?;:ABCDEFGHIJKLMNOPQRSTUVWXYZ^&".ToCharArray();
-            Random r = new Random();
-            int i = r.Next(chars.Length);
-
-            transactionList.Add(new Transaction()
-            {
-                description = "Payment Orders",
-                invoice_number = chars[i].ToString(), //Generate an Invoice No  
-                amount = amount,
-                item_list = itemList
-            });
-            this.payment = new Payment()
-            {
-                intent = "sale",
-                payer = payer,
-                transactions = transactionList,
-                redirect_urls = redirUrls
-            };
-            // Create a payment using a APIContext  
-            return this.payment.Create(apiContext);
-        }*/
 
         public ActionResult Bill()
         {
@@ -504,35 +348,6 @@ namespace Project_BookStoreCT.Controllers
             }
         }
            
-        /*public ActionResult BillPayment(FormCollection f)
-        {
-            using (DataContext db = new DataContext()) 
-            {
-                Bill bill = new Bill();
-                bill.customerName = f["txtKhachHang"];
-                bill.phoneNumber = f["txtSoDienThoai"];
-                bill.date_set = DateTime.Now;
-                bill.customerAddress = f["txtDiaChi"];
-                bill.total = Convert.ToInt32(Session["ThanhTien"]);
-                bill.isPayment = false;
-                bill.isDelivered = false;
-                db.Bills.Add(bill);
-                db.SaveChanges();
-                var bill_id_max = db.Bills.Max(x => x.Bill_ID);
-                foreach (var item in (List<Cart_ViewModels>)Session["Cart"])
-                {
-                    DetailBill detailBill = new DetailBill();
-                    detailBill.Bill_ID = bill_id_max;
-                    detailBill.Book_ID = item.book_id;
-                    detailBill.quantity = item.number;
-                    db.DetailBills.Add(detailBill);
-                    db.SaveChanges();
-                }
-                Session["Cart"] = null;
-            }
-            return View("SuccessView");
-        }*/
-
 
         [HttpGet]
         public ActionResult BooksInCategory(int ? cid)
@@ -554,27 +369,7 @@ namespace Project_BookStoreCT.Controllers
                 return PartialView("_Partial404NotFound");
             }
         }
-        //[HttpPost]
-        //public ActionResult BooksInCategory(int? cid)
-        //{
-        //    if (cid != null)
-        //    {
-        //        using (DataContext db = new DataContext())
-        //        {
-        //            ViewBag.GetAllCategorys = (from c in db.Categorys select c).ToList();
-        //            ViewBag.GetBookFromID = (from b in db.Books
-        //                                     join c in db.Categorys
-        //                                     on b.category_id equals c.Category_ID
-        //                                     where b.category_id == cid
-        //                                     select b).ToList();
-        //            return View();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        return PartialView("_Partial404NotFound");
-        //    }
-        //}
+        
         [HttpGet]
         public ActionResult BookDetail(int ? bid)
         {
