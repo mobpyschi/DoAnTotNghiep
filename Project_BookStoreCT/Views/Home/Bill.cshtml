@@ -1,5 +1,6 @@
 ﻿@using Project_BookStoreCT.Models.ViewModels;
 @using Project_BookStoreCT.Models.ServiceModels;
+@using Project_BookStoreCT.Models.DataModels;
 
 @{ ViewBag.Title = "Bill";
     Layout = "~/Views/Shared/_LayoutMain.cshtml"; }
@@ -92,7 +93,7 @@ else
                                                     @cart.bookname <strong class="product-quantity"> × @cart.number</strong>
                                                 </td>
                                                 <td class="product-total" style="text-align:right">
-                                                    <span class="amount">@String.Format("{0:n0}", cart.total) VND</span>
+                                                    <span class="amount">@String.Format("{0:n0}", cart.total) USD</span>
                                                 </td>
                                             </tr>
                                         }
@@ -104,7 +105,8 @@ else
                                         <tr >
 
                                             <th style="text-align:left">Tạm tính:</th>
-                                            <td style="text-align:right">@Session["ThanhTien"] VND</td>
+                                            <td style="text-align:right">
+                                             @Session["ThanhTien"] USD </td>
                                         </tr>
                                         <tr>
                                             <th style="text-align:left">Tiền shipping:</th>
@@ -112,7 +114,7 @@ else
                                         </tr>
                                         <tr class="order-total" style="border-top: 3px solid #62ab00;">
                                             <th style="text-align:left">Tổng tiền:</th>
-                                            <td style="text-align:right"><strong><span class="amount">@Session["ThanhTien"] VND</span></strong></td>
+                                            <td style="text-align:right"><strong><span class="amount">@Session["ThanhTien"] USD</span></strong></td>
                                         </tr>
 
                                     }
@@ -122,7 +124,7 @@ else
                                             <tr class="order-total">
 
                                             <th>Tạm tính:</th>
-                                            <td>0 VND</td>
+                                            <td>0 USD</td>
                                         </tr>
                                         <tr>
                                             <th>Tiền shipping:</th>
@@ -130,7 +132,7 @@ else
                                         </tr>
                                         <tr>
                                             <th>Tổng tiền:</th>
-                                            <td><strong><span class="amount">0 VND</span></strong></td>
+                                            <td><strong><span class="amount">0 USD</span></strong></td>
                                         </tr>
 
                                         

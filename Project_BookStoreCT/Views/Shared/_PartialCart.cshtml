@@ -8,11 +8,11 @@
         //count = item.Count;
         foreach (Cart_ViewModels cart in (List<Cart_ViewModels>)Session["Cart"])
         {
-            total = total + cart.total;
+            total = total + cart.total ;
             count = count + cart.number;
         }
         Session["ThanhTien"] =  total;
-        Session["ThanhToanPP"] = Math.Round(total / 23000,2);
+       
     }
     }
 @if (Session["Cart"] != null)
@@ -32,7 +32,7 @@
                           </div>
                              <div class="cart-info">
                                  <h5><a href="#">@cart.bookname</a></h5>
-                              <p>@cart.number x @String.Format("{0:n0}", cart.price) VNĐ </p>
+                              <p>@cart.number x @String.Format("{0:n0}", cart.price) USD </p>
                              </div>
                              <div class="cart-icon">
                                  <a onclick="RemoveItemCart(@cart.book_id)"><i class="fa fa-remove"></i></a>
@@ -41,7 +41,7 @@
                      }
                 </div>
                 <div class="cart-totals">
-                    <h5>Tổng thành tiền: <span> @String.Format("{0:n0}", total) VNĐ</span></h5>
+                    <h5>Tổng thành tiền: <span> @String.Format("{0:n0}", total) USD</span></h5>
                 </div>
                 <div class="cart-bottom">
                     <a class="view-cart" href="~/Home/ViewCart">Xem giỏ hàng</a>

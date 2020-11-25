@@ -11,6 +11,8 @@ namespace Project_BookStoreCT.Models.ServiceModels
         //Variables for storing the clientID and clientSecret key  
         public readonly static string ClientId;
         public readonly static string ClientSecret;
+        
+
         //Constructor  
         static PaypalConfiguration()
         {

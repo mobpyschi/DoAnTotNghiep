@@ -16,5 +16,6 @@ namespace Project_BookStoreCT.Models.PostModels
         public int supplier { get; set; }
         public int language { get; set; }
         public int book_id { get; set; }
+        public int quantityExist { get; set; }
     }
 }

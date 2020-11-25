@@ -130,7 +130,7 @@ namespace Project_BookStoreCT.Controllers
                     carts[vitri].total = Convert.ToDouble(carts[vitri].number * carts[vitri].price);
                 }
                 Session["Cart"] = carts;
-                Session["ThanhTien"] = carts[vitri].total;
+                
             }
         }
         [HttpPost]
@@ -157,42 +157,57 @@ namespace Project_BookStoreCT.Controllers
         }
         public ActionResult ViewCart()
         {
+
             return View();
         }
         [HttpPost]
-        public ActionResult UpdateCart(FormCollection f)
+        public ActionResult UpdateCart(BooksPost quanti, FormCollection f)
         {
-            string[] quantity = f.GetValues("quantity");
-            var carts = (List<Cart_ViewModels>)Session["Cart"];
-            for(int i = 0; i < carts.Count; i++)
+            using (DataContext db = new DataContext())
             {
-                if (Convert.ToInt32(quantity[i]) <= 0)
+                string[] quantity = f.GetValues("quantity");
+                var carts = (List<Cart_ViewModels>)Session["Cart"];
+                Book book = db.Books.Where(x => x.Book_ID == quanti.book_id).FirstOrDefault();
+
+                for (int i = 0; i < carts.Count; i++)
                 {
-                    carts.Remove(carts[i]);
+                    if (Convert.ToInt32(quantity[i]) >= quanti.quantityExist)
+                    {
+                        return Json(new { quan_check = 1 });
+                    }
+                    else
+                    {
+                        if (Convert.ToInt32(quantity[i]) <= 0)
+                        {
+                            carts.Remove(carts[i]);
+                        }
+                        else
+                        {
+                            carts[i].number = Convert.ToInt32(quantity[i]);
+                            carts[i].total = Convert.ToDouble(carts[i].number * carts[i].price);
+                        }
+                    }
+
                 }
-                else
+
+                Session["Cart"] = carts;
+
+                double total = 0;
+                foreach (var item in (List<Cart_ViewModels>)Session["Cart"])
                 {
-                    carts[i].number = Convert.ToInt32(quantity[i]);
-                    carts[i].total = Convert.ToDouble(carts[i].number * carts[i].price);
+
+                    total = total + item.total;
                 }
+                Session["ThanhTien"] = total;
+                return View("ViewCart");
             }
-            Session["Cart"] = carts;
-            
-            double total = 0;
-            foreach (var item in (List<Cart_ViewModels>)Session["Cart"])
-            {
-                
-                total = total + item.total ;
-            }
-            Session["ThanhTien"] =total;
-            return View("ViewCart");
         }
 
         
 
         //Work with paypal payment
         private Payment payment;
-
+        public double TyGiaUSD = 23300;
         //Create payment wit APIcontext
         private Payment CreatePayment(APIContext apiContext, string redirectUrl)
         {
@@ -223,7 +238,7 @@ namespace Project_BookStoreCT.Controllers
             {
                 tax = "0",
                 shipping = "0",
-                subtotal = Session["ThanhToanPP"].ToString()
+                subtotal = Session["ThanhTien"].ToString()
             };
 
             
